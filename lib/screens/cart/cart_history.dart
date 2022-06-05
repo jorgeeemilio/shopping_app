@@ -72,7 +72,7 @@ many times a certain time is found
 
         DateTime parseDate=  DateFormat("yyyy-MM-dd HH:mm:ss").parse(cartHistory[index].time!);
         var inputDate = DateTime.parse(parseDate.toString());
-        var outputFormat= DateFormat("MM/dd/yyyy hh:mm a");
+        var outputFormat=DateFormat("dd/MM/yyyy HH:mm");
          outputDate = outputFormat.format(inputDate);
 
       }

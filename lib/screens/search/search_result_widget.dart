@@ -60,7 +60,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
               ),
               SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
               Text(
-                'results found',
+                'resultados encontrados',
                 style: robotoRegular.copyWith(color: Theme.of(context).disabledColor, fontSize: Dimensions.fontSizeSmall),
               ),
             ]),
@@ -304,7 +304,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                               ),
                                               BigText(
                                                   size: 22,
-                                                  text: "food_introduce".tr,
+                                                  text: "Introducción",
                                                   color: AppColors.titleColor),
                                               SizedBox(
                                                 height: Dimensions.padding20,
@@ -442,7 +442,6 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                           BigText(text: searchController.searchProductList![index].title,/* element.value,*/
                                               color: Colors.black87),
                                           SizedBox(height: Dimensions.padding10,),
-                                          TextWidget(text: "With chinese characteristics", color: AppColors.textColor),
                                           SizedBox(height: Dimensions.padding10,),
                                           Row(
                                             mainAxisAlignment:MainAxisAlignment.spaceBetween,

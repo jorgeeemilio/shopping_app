@@ -42,14 +42,14 @@ class _SearchScreenState extends State<SearchScreen> {
                 SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
                 Expanded(child: SearchField(
                   controller: _searchController,
-                  hint: 'search for food',
+                  hint: 'busca comida',
                   suffixIcon: !searchController.isSearchMode ? Icons.filter_list : Icons.search,
                   iconPressed: () => _actionSearch(searchController, false),
                   onSubmit: (text) => _actionSearch(searchController, true),
                 )),
                 CustomButton(
                   onPressed: () => searchController.isSearchMode ? Get.back() : searchController.setSearchMode(true),
-                  buttonText: 'cancel',
+                  buttonText: 'cancelar',
                   transparent: true,
                   width: 80,
                 ),
@@ -61,7 +61,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: Center(child: SizedBox(
                     width: Dimensions.WEB_MAX_WIDTH,
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Text("In search mode")
+                      Text("En modo buscador")
                 ]))),
               ) : SearchResultWidget(searchText: _searchController.text.trim())),
 

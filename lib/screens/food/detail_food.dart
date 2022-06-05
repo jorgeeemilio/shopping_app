@@ -156,20 +156,19 @@ class DetailFood extends StatelessWidget {
                     Row(
                       children: [
                         Wrap(
-                          children: List.generate(
-                              5,
+                          children: List.generate(productItem.title.startsWith("Tortilla") ? 5 : productItem.title.startsWith("Jamón") ? 5 : productItem.title.startsWith("Salmorejo") ? 4 : productItem.title.startsWith("Gazpacho") ? 4 : productItem.title.startsWith("Paella") ? 3 : 5,
                                   (index) => Icon(Icons.star,
                                   color: AppColors.mainColor, size: 15)),
                         ),
                         SizedBox(
                           width: 10,
                         ),
-                        TextWidget(text: "4.5", color: Color(0xFFccc7c5)),
+                        TextWidget(text: productItem.title.startsWith("Tortilla") ? "5" : productItem.title.startsWith("Jamón") ? "5" : productItem.title.startsWith("Salmorejo") ? "4" : productItem.title.startsWith("Gazpacho") ? "4" : productItem.title.startsWith("Paella") ? "3" : "4.5", color: Color(0xFFccc7c5)),
                         SizedBox(
                           width: 10,
                         ),
                         TextWidget(
-                            text: "1287 comments", color: Color(0xFFccc7c5))
+                            text: productItem.title.startsWith("Tortilla") ? "100 comments" : productItem.title.startsWith("Jamón") ? "200 comments" : productItem.title.startsWith("Salmorejo") ? "300 comments" : productItem.title.startsWith("Gazpacho") ? "400 comments" : productItem.title.startsWith("Paella") ? "500 comments" : "1287 comments", color: Color(0xFFccc7c5))
                       ],
                     ),
                     SizedBox(
@@ -191,7 +190,7 @@ class DetailFood extends StatelessWidget {
                           iconColor: AppColors.mainColor,
                         ),
                         IconAndTextWidget(
-                          text: "32min",
+                          text: productItem.title.startsWith("Tortilla") ? "30 m" : productItem.title.startsWith("Jamón") ? "5 m" : productItem.title.startsWith("Salmorejo") ? "15 m" : productItem.title.startsWith("Gazpacho") ? "15 m" : productItem.title.startsWith("Paella") ? "1 h" : "30 m",
                           color: AppColors.textColor,
                           icon: Icons.access_time_rounded,
                           iconColor: AppColors.iconColor2,
@@ -272,7 +271,7 @@ class DetailFood extends StatelessWidget {
               child: Container(
                 child: BigText(
                   size: 20,
-                  text: (productItem.price/100).toString()+"\€"+ " | Añadir",
+                  text: (productItem.price.round()).toString()+"\€"+ " | Añadir",
                   color: Colors.white,
                 ),
                 padding:  EdgeInsets.all(Dimensions.padding20),

@@ -69,7 +69,6 @@ class ItemView extends StatelessWidget {
                                   BigText(text: searchController.searchProductList![index].title,/* element.value,*/
                                       color: Colors.black87),
                                   SizedBox(height: Dimensions.padding10,),
-                                  TextWidget(text: "With chinese characteristics", color: AppColors.textColor),
                                   SizedBox(height: Dimensions.padding10,),
                                   Row(
                                     mainAxisAlignment:MainAxisAlignment.spaceBetween,

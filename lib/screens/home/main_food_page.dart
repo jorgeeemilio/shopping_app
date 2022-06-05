@@ -145,13 +145,13 @@ class _MainFoodPageState extends State<MainFoodPage> {
                           Row(
                             children: [
                               Wrap(
-                                children: List.generate(5, (index) => Icon(Icons.star, color:AppColors.mainColor, size:15)),
-
+                                children: List.generate(product.title.startsWith("Tortilla") ? 5 : product.title.startsWith("Jamón") ? 5 : product.title.startsWith("Salmorejo") ? 4 : product.title.startsWith("Gazpacho") ? 4 : product.title.startsWith("Paella") ? 3 : 5,
+                                        (index) => Icon(Icons.star, color:AppColors.mainColor, size:15)),
                               ),
                               SizedBox(width: 10,),
-                              TextWidget(text: "4.5", color: Color(0xFFccc7c5)),
+                              TextWidget(text: product.title.startsWith("Tortilla") ? "5" : product.title.startsWith("Jamón") ? "5" : product.title.startsWith("Salmorejo") ? "4" : product.title.startsWith("Gazpacho") ? "4" : product.title.startsWith("Paella") ? "3" : "4.5", color: Color(0xFFccc7c5)),
                               SizedBox(width: 10,),
-                              TextWidget(text: "1287 comentarios", color: Color(0xFFccc7c5))
+                              TextWidget(text: product.title.startsWith("Tortilla") ? "100 comments" : product.title.startsWith("Jamón") ? "200 comments" : product.title.startsWith("Salmorejo") ? "300 comments" : product.title.startsWith("Gazpacho") ? "400 comments" : product.title.startsWith("Paella") ? "500 comments" : "1287 comments", color: Color(0xFFccc7c5))
                             ],
                           ),
                           SizedBox(height: Dimensions.padding20,),
@@ -167,7 +167,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                               IconAndTextWidget(text: "1.7km",
                                 color: AppColors.textColor, icon: Icons.location_on,
                                 iconColor: AppColors.mainColor,),
-                              IconAndTextWidget(text: "32min",color: AppColors.textColor,
+                              IconAndTextWidget(text: product.title.startsWith("Tortilla") ? "30 m" : product.title.startsWith("Jamón") ? "5 m" : product.title.startsWith("Salmorejo") ? "15 m" : product.title.startsWith("Gazpacho") ? "15 m" : product.title.startsWith("Paella") ? "1 h" : "30 m",color: AppColors.textColor,
                                 icon: Icons.access_time_rounded,
                                 iconColor: AppColors.iconColor2,
                               )
@@ -299,7 +299,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
                                           BigText(text: popularProducts.popularProductList[index].title,/* element.value,*/
                                               color: Colors.black87),
                                           SizedBox(height: Dimensions.padding10,),
-                                          TextWidget(text: "With chinese characteristics", color: AppColors.textColor),
                                           SizedBox(height: Dimensions.padding10,),
                                           Row(
                                             mainAxisAlignment:MainAxisAlignment.spaceBetween,
@@ -308,7 +307,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
 
                                               IconAndTextWidget(text: "17km",color: AppColors.textColor, icon: Icons.location_on, iconColor: AppColors.mainColor,),
 
-                                              IconAndTextWidget(text: "32min",color:AppColors.textColor, icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2,)
+                                              IconAndTextWidget(text: popularProducts.popularProductList[index].title.startsWith("Fabada") ? "1 h" : popularProducts.popularProductList[index].title.startsWith("Migas") ? "45 m" : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? "50 m" : popularProducts.popularProductList[index].title.startsWith("Calamares") ? "10 m" : popularProducts.popularProductList[index].title.startsWith("Cocido") ? "45 m" : popularProducts.popularProductList[index].title.startsWith("Marisco") ? "20 m" : "30 m" ,color:AppColors.textColor, icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2,)
                                             ],
                                           )
                                         ],
