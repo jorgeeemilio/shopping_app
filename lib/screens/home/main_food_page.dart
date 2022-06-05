@@ -158,15 +158,15 @@ class _MainFoodPageState extends State<MainFoodPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              IconAndTextWidget(text: "Normal",
-                                color: AppColors.textColor,
-                                icon: Icons.circle_sharp,
-                                iconColor: AppColors.iconColor1,
+                              IconAndTextWidget(text: product.title.startsWith("Tortilla") ? "Medio" : product.title.startsWith("Jamón") ? "Rápido" : product.title.startsWith("Salmorejo") ? "Rápido" : product.title.startsWith("Gazpacho") ? "Rápido" : product.title.startsWith("Paella") ? "Lento" : "",
+                                  color: AppColors.textColor,
+                                  icon: Icons.circle_sharp,
+                                  iconColor: product.title.startsWith("Tortilla") ? AppColors.amarillo : product.title.startsWith("Jamón") ? AppColors.verde : product.title.startsWith("Salmorejo") ? AppColors.verde : product.title.startsWith("Gazpacho") ? AppColors.verde : product.title.startsWith("Paella") ? AppColors.naranja : AppColors.mainColor,
                               ),
 
-                              IconAndTextWidget(text: "1.7km",
-                                color: AppColors.textColor, icon: Icons.location_on,
-                                iconColor: AppColors.mainColor,),
+                              IconAndTextWidget(text: product.title.startsWith("Tortilla") ? "Huevos" : product.title.startsWith("Jamón") ? "Nada" : product.title.startsWith("Salmorejo") ? "Gluten" : product.title.startsWith("Gazpacho") ? "Sulfito" : product.title.startsWith("Paella") ? "Pescado" : "",
+                                color: AppColors.textColor, icon: product.title.startsWith("Tortilla") ? Icons.egg : product.title.startsWith("Jamón") ? Icons.done : product.title.startsWith("Salmorejo") ? Icons.spa : product.title.startsWith("Gazpacho") ? Icons.science : product.title.startsWith("Paella") ? Icons.waves : Icons.done,
+                                iconColor: product.title.startsWith("Tortilla") ? AppColors.huevos : product.title.startsWith("Jamón") ? AppColors.verde : product.title.startsWith("Salmorejo") ? AppColors.gluten : product.title.startsWith("Gazpacho") ? AppColors.sulfitos : product.title.startsWith("Paella") ? AppColors.pescado : AppColors.mainColor,),
                               IconAndTextWidget(text: product.title.startsWith("Tortilla") ? "30 m" : product.title.startsWith("Jamón") ? "5 m" : product.title.startsWith("Salmorejo") ? "15 m" : product.title.startsWith("Gazpacho") ? "15 m" : product.title.startsWith("Paella") ? "1 h" : "30 m",color: AppColors.textColor,
                                 icon: Icons.access_time_rounded,
                                 iconColor: AppColors.iconColor2,
@@ -303,11 +303,15 @@ class _MainFoodPageState extends State<MainFoodPage> {
                                           Row(
                                             mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                             children: [
-                                              IconAndTextWidget(text: "Normal", color: AppColors.textColor, icon: Icons.circle, iconColor: AppColors.iconColor1,),
-
-                                              IconAndTextWidget(text: "17km",color: AppColors.textColor, icon: Icons.location_on, iconColor: AppColors.mainColor,),
-
-                                              IconAndTextWidget(text: popularProducts.popularProductList[index].title.startsWith("Fabada") ? "1 h" : popularProducts.popularProductList[index].title.startsWith("Migas") ? "45 m" : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? "50 m" : popularProducts.popularProductList[index].title.startsWith("Calamares") ? "10 m" : popularProducts.popularProductList[index].title.startsWith("Cocido") ? "45 m" : popularProducts.popularProductList[index].title.startsWith("Marisco") ? "20 m" : "30 m" ,color:AppColors.textColor, icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2,)
+                                              IconAndTextWidget(text: popularProducts.popularProductList[index].title.startsWith("Fabada") ? "Lento" : popularProducts.popularProductList[index].title.startsWith("Migas") ? "Medio" : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? "Lento" : popularProducts.popularProductList[index].title.startsWith("Calamares") ? "Rápido" : popularProducts.popularProductList[index].title.startsWith("Cocido") ? "Medio" : popularProducts.popularProductList[index].title.startsWith("Marisco") ? "Rápido" : "",
+                                                color: AppColors.textColor,
+                                                icon: Icons.circle_sharp,
+                                                iconColor: popularProducts.popularProductList[index].title.startsWith("Fabada") ? AppColors.naranja : popularProducts.popularProductList[index].title.startsWith("Migas") ? AppColors.amarillo : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? AppColors.naranja : popularProducts.popularProductList[index].title.startsWith("Calamares") ? AppColors.verde : popularProducts.popularProductList[index].title.startsWith("Cocido") ? AppColors.amarillo : popularProducts.popularProductList[index].title.startsWith("Marisco") ? AppColors.verde : AppColors.mainColor,
+                                              ),
+                                              IconAndTextWidget(text: popularProducts.popularProductList[index].title.startsWith("Fabada") ? "Gluten" : popularProducts.popularProductList[index].title.startsWith("Migas") ? "Gluten" : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? "Moluscos" : popularProducts.popularProductList[index].title.startsWith("Calamares") ? "Moluscos" : popularProducts.popularProductList[index].title.startsWith("Cocido") ? "Gluten" : popularProducts.popularProductList[index].title.startsWith("Marisco") ? "Crustaceos" : "",
+                                                color: AppColors.textColor, icon: popularProducts.popularProductList[index].title.startsWith("Fabada") ? Icons.spa : popularProducts.popularProductList[index].title.startsWith("Migas") ? Icons.spa : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? Icons.waves : popularProducts.popularProductList[index].title.startsWith("Calamares") ? Icons.waves : popularProducts.popularProductList[index].title.startsWith("Cocido") ? Icons.spa : popularProducts.popularProductList[index].title.startsWith("Marisco") ? Icons.waves : Icons.done,
+                                                iconColor: popularProducts.popularProductList[index].title.startsWith("Fabada") ? AppColors.gluten : popularProducts.popularProductList[index].title.startsWith("Migas") ? AppColors.gluten : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? AppColors.moluscos : popularProducts.popularProductList[index].title.startsWith("Calamares") ? AppColors.moluscos : popularProducts.popularProductList[index].title.startsWith("Cocido") ? AppColors.gluten : popularProducts.popularProductList[index].title.startsWith("Marisco") ? AppColors.crustaceos : AppColors.mainColor,),
+                                              IconAndTextWidget(text: popularProducts.popularProductList[index].title.startsWith("Fabada") ? "1 h" : popularProducts.popularProductList[index].title.startsWith("Migas") ? "40 m" : popularProducts.popularProductList[index].title.startsWith("Pulpo") ? "50 m" : popularProducts.popularProductList[index].title.startsWith("Calamares") ? "10 m" : popularProducts.popularProductList[index].title.startsWith("Cocido") ? "40 m" : popularProducts.popularProductList[index].title.startsWith("Marisco") ? "20 m" : "30 m" ,color:AppColors.textColor, icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2,)
                                             ],
                                           )
                                         ],

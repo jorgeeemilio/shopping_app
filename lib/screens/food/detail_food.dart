@@ -177,18 +177,14 @@ class DetailFood extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconAndTextWidget(
-                          text: "Normal",
+                        IconAndTextWidget(text: productItem.title.startsWith("Tortilla") ? "Medio" : productItem.title.startsWith("Jamón") ? "Rápido" : productItem.title.startsWith("Salmorejo") ? "Rápido" : productItem.title.startsWith("Gazpacho") ? "Rápido" : productItem.title.startsWith("Paella") ? "Lento" : "",
                           color: AppColors.textColor,
                           icon: Icons.circle_sharp,
-                          iconColor: AppColors.iconColor1,
+                          iconColor: productItem.title.startsWith("Tortilla") ? AppColors.amarillo : productItem.title.startsWith("Jamón") ? AppColors.verde : productItem.title.startsWith("Salmorejo") ? AppColors.verde : productItem.title.startsWith("Gazpacho") ? AppColors.verde : productItem.title.startsWith("Paella") ? AppColors.naranja : AppColors.mainColor,
                         ),
-                        IconAndTextWidget(
-                          text: "1.7km",
-                          color: AppColors.textColor,
-                          icon: Icons.location_on,
-                          iconColor: AppColors.mainColor,
-                        ),
+                        IconAndTextWidget(text: productItem.title.startsWith("Tortilla") ? "Huevos" : productItem.title.startsWith("Jamón") ? "Nada" : productItem.title.startsWith("Salmorejo") ? "Gluten" : productItem.title.startsWith("Gazpacho") ? "Sulfito" : productItem.title.startsWith("Paella") ? "Pescado" : "",
+                          color: AppColors.textColor, icon: productItem.title.startsWith("Tortilla") ? Icons.egg : productItem.title.startsWith("Jamón") ? Icons.done : productItem.title.startsWith("Salmorejo") ? Icons.spa : productItem.title.startsWith("Gazpacho") ? Icons.science : productItem.title.startsWith("Paella") ? Icons.waves : Icons.done,
+                          iconColor: productItem.title.startsWith("Tortilla") ? AppColors.huevos : productItem.title.startsWith("Jamón") ? AppColors.verde : productItem.title.startsWith("Salmorejo") ? AppColors.gluten : productItem.title.startsWith("Gazpacho") ? AppColors.sulfitos : productItem.title.startsWith("Paella") ? AppColors.pescado : AppColors.mainColor,),
                         IconAndTextWidget(
                           text: productItem.title.startsWith("Tortilla") ? "30 m" : productItem.title.startsWith("Jamón") ? "5 m" : productItem.title.startsWith("Salmorejo") ? "15 m" : productItem.title.startsWith("Gazpacho") ? "15 m" : productItem.title.startsWith("Paella") ? "1 h" : "30 m",
                           color: AppColors.textColor,

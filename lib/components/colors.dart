@@ -13,5 +13,14 @@ class AppColors{
   static final Color mainBlackColor = const Color(0xFF332d2b);
   //static final Color yellowColor = const Color(0xFFfa7552);
   static final Color yellowColor = const Color(0xFFffd379);
-
+  //alergenos
+  static final Color gluten = const Color(0xfff47039);
+  static final Color huevos = const Color(0xfff68d2f);
+  static final Color pescado = const Color(0xff28429d);
+  static final Color crustaceos = const Color(0xff1cb6f1);
+  static final Color moluscos = const Color(0xff4dc4d5);
+  static final Color sulfitos = const Color(0xff82104e);
+  static final Color verde = const Color(0xff59ce3e);
+  static final Color amarillo = const Color(0xffdee217);
+  static final Color naranja = const Color(0xffe88312);
 }
