@@ -236,7 +236,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                           ],
                                         ),
                                         Container(
-                                          height: 430,
+                                          height: 350,
 
                                           padding: const EdgeInsets.only(left: 20, right: 20, top:20),
                                           decoration: BoxDecoration(
@@ -257,20 +257,19 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                               Row(
                                                 children: [
                                                   Wrap(
-                                                    children: List.generate(
-                                                        5,
+                                                    children: List.generate(product.title.startsWith("Tortilla") ? 5 : product.title.startsWith("Jamón") ? 5 : product.title.startsWith("Salmorejo") ? 4 : product.title.startsWith("Gazpacho") ? 4 : product.title.startsWith("Paella") ? 3 : 0,
                                                             (index) => Icon(Icons.star,
                                                             color: AppColors.mainColor, size: 15)),
                                                   ),
                                                   SizedBox(
                                                     width: 10,
                                                   ),
-                                                  TextWidget(text: "4.5", color: Color(0xFFccc7c5)),
+                                                  TextWidget(text: "", color: Color(0xFFccc7c5)),
                                                   SizedBox(
                                                     width: 10,
                                                   ),
                                                   TextWidget(
-                                                      text: "1287"+" "+"comments".tr, color: Color(0xFFccc7c5))
+                                                      text: product.title.startsWith("Tortilla") ? "100 comments" : product.title.startsWith("Jamón") ? "200 comments" : product.title.startsWith("Salmorejo") ? "300 comments" : product.title.startsWith("Gazpacho") ? "400 comments" : product.title.startsWith("Paella") ? "500 comments" : "", color: Color(0xFFccc7c5))
                                                 ],
                                               ),
                                               SizedBox(
@@ -279,24 +278,16 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  IconAndTextWidget(
-                                                    text: "Normal",
+                                                  IconAndTextWidget(text: searchController.searchProductList![index].title.startsWith("Tortilla") ? "Medio" : searchController.searchProductList![index].title.startsWith("Jamón") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Salmorejo") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Gazpacho") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Paella") ? "Lento" : searchController.searchProductList![index].title.startsWith("Fabada") ? "Lento" : searchController.searchProductList![index].title.startsWith("Migas") ? "Medio" : searchController.searchProductList![index].title.startsWith("Pulpo") ? "Lento" : searchController.searchProductList![index].title.startsWith("Calamares") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Cocido") ? "Medio" : searchController.searchProductList![index].title.startsWith("Marisco") ? "Rápido" : "",
                                                     color: AppColors.textColor,
                                                     icon: Icons.circle_sharp,
-                                                    iconColor: AppColors.iconColor1,
+                                                    iconColor: searchController.searchProductList![index].title.startsWith("Tortilla") ? AppColors.amarillo : searchController.searchProductList![index].title.startsWith("Jamón") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Salmorejo") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Gazpacho") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Paella") ? AppColors.naranja : searchController.searchProductList![index].title.startsWith("Fabada") ? AppColors.naranja : searchController.searchProductList![index].title.startsWith("Migas") ? AppColors.amarillo : searchController.searchProductList![index].title.startsWith("Pulpo") ? AppColors.naranja : searchController.searchProductList![index].title.startsWith("Calamares") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Cocido") ? AppColors.amarillo : searchController.searchProductList![index].title.startsWith("Marisco") ? AppColors.verde : AppColors.mainColor,
                                                   ),
+                                                  IconAndTextWidget(text: searchController.searchProductList![index].title.startsWith("Tortilla") ? "Huevos" : searchController.searchProductList![index].title.startsWith("Jamón") ? "Nada" : searchController.searchProductList![index].title.startsWith("Salmorejo") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Gazpacho") ? "Sulfito" : searchController.searchProductList![index].title.startsWith("Paella") ? "Pescado" : searchController.searchProductList![index].title.startsWith("Fabada") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Migas") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Pulpo") ? "Moluscos" : searchController.searchProductList![index].title.startsWith("Calamares") ? "Moluscos" : searchController.searchProductList![index].title.startsWith("Cocido") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Marisco") ? "Crustaceos" : "",
+                                                    color: AppColors.textColor, icon: searchController.searchProductList![index].title.startsWith("Tortilla") ? Icons.egg : searchController.searchProductList![index].title.startsWith("Jamón") ? Icons.done : searchController.searchProductList![index].title.startsWith("Salmorejo") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Gazpacho") ? Icons.science : searchController.searchProductList![index].title.startsWith("Paella") ? Icons.waves : searchController.searchProductList![index].title.startsWith("Fabada") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Migas") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Pulpo") ? Icons.waves : searchController.searchProductList![index].title.startsWith("Calamares") ? Icons.waves : searchController.searchProductList![index].title.startsWith("Cocido") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Marisco") ? Icons.waves : Icons.done,
+                                                    iconColor: searchController.searchProductList![index].title.startsWith("Tortilla") ? AppColors.huevos : searchController.searchProductList![index].title.startsWith("Jamón") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Salmorejo") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Gazpacho") ? AppColors.sulfitos : searchController.searchProductList![index].title.startsWith("Paella") ? AppColors.pescado : searchController.searchProductList![index].title.startsWith("Fabada") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Migas") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Pulpo") ? AppColors.moluscos : searchController.searchProductList![index].title.startsWith("Calamares") ? AppColors.moluscos : searchController.searchProductList![index].title.startsWith("Cocido") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Marisco") ? AppColors.crustaceos : AppColors.mainColor,),
                                                   IconAndTextWidget(
-                                                    text: "1.7km",
-                                                    color: AppColors.textColor,
-                                                    icon: Icons.location_on,
-                                                    iconColor: AppColors.mainColor,
-                                                  ),
-                                                  IconAndTextWidget(
-                                                    text: "32min",
-                                                    color: AppColors.textColor,
-                                                    icon: Icons.access_time_rounded,
-                                                    iconColor: AppColors.iconColor2,
-                                                  )
+                                                    text: searchController.searchProductList![index].title.startsWith("Tortilla") ? "30 m" : searchController.searchProductList![index].title.startsWith("Jamón") ? "5 m" : searchController.searchProductList![index].title.startsWith("Salmorejo") ? "15 m" : searchController.searchProductList![index].title.startsWith("Gazpacho") ? "15 m" : searchController.searchProductList![index].title.startsWith("Paella") ? "1 h" : searchController.searchProductList![index].title.startsWith("Fabada") ? "1 h" : searchController.searchProductList![index].title.startsWith("Migas") ? "40 m" : searchController.searchProductList![index].title.startsWith("Pulpo") ? "50 m" : searchController.searchProductList![index].title.startsWith("Calamares") ? "10 m" : searchController.searchProductList![index].title.startsWith("Cocido") ? "40 m" : searchController.searchProductList![index].title.startsWith("Marisco") ? "20 m" : "30 m" ,color:AppColors.textColor, icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2,)
                                                 ],
                                               ),
                                               SizedBox(
@@ -370,7 +361,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                                 child: Container(
                                                   child: BigText(
                                                     size: 20,
-                                                    text: "\$"+(product.price).toString()+ " "+"add_to_cart".tr,
+                                                    text: (product.price.round()).toString()+"\€"+ " | Añadir",
                                                     color: Colors.white,
                                                   ),
                                                   padding:  EdgeInsets.all(Dimensions.padding20),
@@ -446,11 +437,16 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                           Row(
                                             mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                             children: [
-                                              IconAndTextWidget(text: "Normal", color: AppColors.textColor, icon: Icons.circle, iconColor: AppColors.iconColor1,),
-
-                                              IconAndTextWidget(text: "17km",color: AppColors.textColor, icon: Icons.location_on, iconColor: AppColors.mainColor,),
-
-                                              IconAndTextWidget(text: "32min",color:AppColors.textColor, icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2,)
+                                              IconAndTextWidget(text: searchController.searchProductList![index].title.startsWith("Tortilla") ? "Medio" : searchController.searchProductList![index].title.startsWith("Jamón") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Salmorejo") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Gazpacho") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Paella") ? "Lento" : searchController.searchProductList![index].title.startsWith("Fabada") ? "Lento" : searchController.searchProductList![index].title.startsWith("Migas") ? "Medio" : searchController.searchProductList![index].title.startsWith("Pulpo") ? "Lento" : searchController.searchProductList![index].title.startsWith("Calamares") ? "Rápido" : searchController.searchProductList![index].title.startsWith("Cocido") ? "Medio" : searchController.searchProductList![index].title.startsWith("Marisco") ? "Rápido" : "",
+                                                color: AppColors.textColor,
+                                                icon: Icons.circle_sharp,
+                                                iconColor: searchController.searchProductList![index].title.startsWith("Tortilla") ? AppColors.amarillo : searchController.searchProductList![index].title.startsWith("Jamón") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Salmorejo") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Gazpacho") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Paella") ? AppColors.naranja : searchController.searchProductList![index].title.startsWith("Fabada") ? AppColors.naranja : searchController.searchProductList![index].title.startsWith("Migas") ? AppColors.amarillo : searchController.searchProductList![index].title.startsWith("Pulpo") ? AppColors.naranja : searchController.searchProductList![index].title.startsWith("Calamares") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Cocido") ? AppColors.amarillo : searchController.searchProductList![index].title.startsWith("Marisco") ? AppColors.verde : AppColors.mainColor,
+                                              ),
+                                              IconAndTextWidget(text: searchController.searchProductList![index].title.startsWith("Tortilla") ? "Huevos" : searchController.searchProductList![index].title.startsWith("Jamón") ? "Nada" : searchController.searchProductList![index].title.startsWith("Salmorejo") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Gazpacho") ? "Sulfito" : searchController.searchProductList![index].title.startsWith("Paella") ? "Pescado" : searchController.searchProductList![index].title.startsWith("Fabada") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Migas") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Pulpo") ? "Moluscos" : searchController.searchProductList![index].title.startsWith("Calamares") ? "Moluscos" : searchController.searchProductList![index].title.startsWith("Cocido") ? "Gluten" : searchController.searchProductList![index].title.startsWith("Marisco") ? "Crustaceos" : "",
+                                                color: AppColors.textColor, icon: searchController.searchProductList![index].title.startsWith("Tortilla") ? Icons.egg : searchController.searchProductList![index].title.startsWith("Jamón") ? Icons.done : searchController.searchProductList![index].title.startsWith("Salmorejo") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Gazpacho") ? Icons.science : searchController.searchProductList![index].title.startsWith("Paella") ? Icons.waves : searchController.searchProductList![index].title.startsWith("Fabada") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Migas") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Pulpo") ? Icons.waves : searchController.searchProductList![index].title.startsWith("Calamares") ? Icons.waves : searchController.searchProductList![index].title.startsWith("Cocido") ? Icons.spa : searchController.searchProductList![index].title.startsWith("Marisco") ? Icons.waves : Icons.done,
+                                                iconColor: searchController.searchProductList![index].title.startsWith("Tortilla") ? AppColors.huevos : searchController.searchProductList![index].title.startsWith("Jamón") ? AppColors.verde : searchController.searchProductList![index].title.startsWith("Salmorejo") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Gazpacho") ? AppColors.sulfitos : searchController.searchProductList![index].title.startsWith("Paella") ? AppColors.pescado : searchController.searchProductList![index].title.startsWith("Fabada") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Migas") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Pulpo") ? AppColors.moluscos : searchController.searchProductList![index].title.startsWith("Calamares") ? AppColors.moluscos : searchController.searchProductList![index].title.startsWith("Cocido") ? AppColors.gluten : searchController.searchProductList![index].title.startsWith("Marisco") ? AppColors.crustaceos : AppColors.mainColor,),
+                                              IconAndTextWidget(
+                                                text: searchController.searchProductList![index].title.startsWith("Tortilla") ? "30 m" : searchController.searchProductList![index].title.startsWith("Jamón") ? "5 m" : searchController.searchProductList![index].title.startsWith("Salmorejo") ? "15 m" : searchController.searchProductList![index].title.startsWith("Gazpacho") ? "15 m" : searchController.searchProductList![index].title.startsWith("Paella") ? "1 h" : searchController.searchProductList![index].title.startsWith("Fabada") ? "1 h" : searchController.searchProductList![index].title.startsWith("Migas") ? "40 m" : searchController.searchProductList![index].title.startsWith("Pulpo") ? "50 m" : searchController.searchProductList![index].title.startsWith("Calamares") ? "10 m" : searchController.searchProductList![index].title.startsWith("Cocido") ? "40 m" : searchController.searchProductList![index].title.startsWith("Marisco") ? "20 m" : "30 m" ,color:AppColors.textColor, icon: Icons.access_time_rounded, iconColor: AppColors.iconColor2,)
                                             ],
                                           )
                                         ],
@@ -470,7 +466,6 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
             }),
           ),
         )),
-
       ]),
     );
   }

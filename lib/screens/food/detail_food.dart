@@ -163,7 +163,7 @@ class DetailFood extends StatelessWidget {
                         SizedBox(
                           width: 10,
                         ),
-                        TextWidget(text: productItem.title.startsWith("Tortilla") ? "5" : productItem.title.startsWith("Jamón") ? "5" : productItem.title.startsWith("Salmorejo") ? "4" : productItem.title.startsWith("Gazpacho") ? "4" : productItem.title.startsWith("Paella") ? "3" : "4.5", color: Color(0xFFccc7c5)),
+                        TextWidget(text: "", color: Color(0xFFccc7c5)),
                         SizedBox(
                           width: 10,
                         ),
