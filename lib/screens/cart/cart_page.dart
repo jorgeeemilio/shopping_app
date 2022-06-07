@@ -29,7 +29,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _noteController = TextEditingController();
+    //final TextEditingController _noteController = TextEditingController();
   //  var location = Get.find<LocationController>().getUserAddress();
 
     // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
@@ -74,7 +74,8 @@ class CartPage extends StatelessWidget {
                         }else if(page=='popular'){
                           Get.toNamed(RouteHelper.getPopularFoodRoute(pageId, page, RouteHelper.cartPage));
                         }else if(page=='cart-history'){
-                          showCustomSnackBar("La reseña del producto no está disponible desde historial de compra", isError: false,title: "Pedir más");
+                          //showCustomSnackBar("La reseña del producto no está disponible desde historial de compra", isError: false,title: "Pedir más");
+                          Get.back();
                         }else{
                           Get.offNamed(RouteHelper.getInitialRoute());
                         }
@@ -227,6 +228,7 @@ class CartPage extends StatelessWidget {
                                       }
                                       if(getPageIndex<0){
                                         showCustomSnackBar("La reseña del producto no está disponible desde historial de compra", isError: false,title: "Pedir más");
+                                        //Get.back();
 
                                       }else{
                                         if(page=="recommended"){
@@ -235,6 +237,7 @@ class CartPage extends StatelessWidget {
                                           Get.toNamed(RouteHelper.getPopularFoodRoute(getPageIndex, page, RouteHelper.cartPage));
                                         }else if(page=='cart-history'){
                                           showCustomSnackBar("La reseña del producto no está disponible desde historial de compra", isError: false,title: "Pedir más");
+                                          //Get.back();
                                         }else{
                                           Get.toNamed(RouteHelper.getInitialRoute());
                                         }

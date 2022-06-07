@@ -110,6 +110,24 @@ class _HomePageBodyState extends State<HomePageBody> {
                       ),
                       Center(
                         child: GestureDetector(
+                          onTap: () => Get.toNamed(RouteHelper.getCartPage(0, "cart-history")),
+                          child: Container(
+                            width: Dimensions.iconBackSize,
+                            height: Dimensions.iconBackSize,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(Dimensions.borderRadius15),
+                                color: AppColors.mainColor
+                            ),
+
+                            // Icono de lupa para buscar platos
+
+                            child: Icon(Icons.shopping_cart, color:Colors.white),
+                            //onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: GestureDetector(
                           onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
                           child: Container(
                             width: Dimensions.iconBackSize,
@@ -125,7 +143,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                             //onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
