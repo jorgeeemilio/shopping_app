@@ -137,14 +137,16 @@ class _PickMapScreenState extends State<PickMapScreen> {
                 }),
               ),
             ),
-
             Positioned(
               bottom: Dimensions.PADDING_SIZE_LARGE,
               left: Dimensions.PADDING_SIZE_SMALL,
               right: Dimensions.PADDING_SIZE_SMALL,
               child: !locationController.isLoading ? CustomButton(
+                buttonText: widget.fromAddAddress ? 'Elegir domicilio' : 'Elegir localización',
+                /*
                 buttonText: locationController.inZone ? widget.fromAddAddress ? 'pick_address'.tr : 'pick_location'.tr
                     : 'service_not_available_in_this_area'.tr,
+                 */
                 onPressed: (locationController.buttonDisabled || locationController.loading) ? null : () {
                   if(locationController.pickPosition.latitude != 0 &&
                       locationController.pickPlaceMark.name != null) {
@@ -170,7 +172,7 @@ class _PickMapScreenState extends State<PickMapScreen> {
                       locationController.saveAddressAndNavigate(_address, widget.fromSignUp, widget.route, widget.canRoute);
                     }
                   }else {
-                    showCustomSnackBar('pick_an_address'.tr);
+                    showCustomSnackBar('Elige un domicilio');
                   }
                 },
               ) : Center(child: CircularProgressIndicator()),
@@ -188,9 +190,9 @@ class _PickMapScreenState extends State<PickMapScreen> {
       permission = await Geolocator.requestPermission();
     }
     if(permission == LocationPermission.denied) {
-      showCustomSnackBar('you_have_to_allow'.tr);
+      showCustomSnackBar('Tienes que dar permiso'.tr);
     }else if(permission == LocationPermission.deniedForever) {
-      print("permission denied");
+      print("Permiso denegado");
     }else {
       onTap();
     }

@@ -222,7 +222,8 @@ new variables
         }
         ResponseModel _responseModel = await getZone(position.target.latitude.toString(),
             position.target.longitude.toString(), true);
-        _buttonDisabled = !_responseModel.isSuccess;
+        //_buttonDisabled = !_responseModel.isSuccess;
+        _buttonDisabled = false;
         if (_changeAddress) {
 
             String _address = await getAddressFromGeocode(LatLng(position.target.latitude,
