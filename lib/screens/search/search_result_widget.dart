@@ -357,6 +357,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                               GestureDetector(
                                                 onTap: (){
                                                   Get.find<ProductController>().addItem(product);
+                                                  Get.snackbar("Producto", "Añadido con éxito");
                                                 },
                                                 child: Container(
                                                   child: BigText(

@@ -320,6 +320,7 @@ class MoreFood extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         Get.find<ProductController>().addItem(productItem);
+                        Get.snackbar("Producto", "Añadido con éxito");
                       },
                       child: BigText(
                         text: (productItem.price.round()).toString()+"\€"+ " | Añadir",

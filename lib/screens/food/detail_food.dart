@@ -326,7 +326,7 @@ class DetailFood extends StatelessWidget {
             GestureDetector(
               onTap: (){
                 Get.find<ProductController>().addItem(productItem);
-
+                Get.snackbar("Producto", "Añadido con éxito");
               },
               child: Container(
                 child: BigText(
