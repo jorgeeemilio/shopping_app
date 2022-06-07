@@ -207,7 +207,7 @@ class SignUpPage extends StatelessWidget {
       authController.registration(signUpBody).then((status) async {
         if (status.isSuccess) {
             print("success registration");
-            Get.offNamed(RouteHelper.getInitialRoute());
+            Get.toNamed(RouteHelper.getAddAddressRoute());
         }else {
           Get.snackbar("Error", "Algo falló");
 
