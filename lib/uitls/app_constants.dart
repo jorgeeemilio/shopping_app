@@ -1,3 +1,5 @@
+// Clase para definir algunos nombres que son constantes. Por ejemplo, el enlace para acceder a la api.
+
 class AppConstants {
   static const String APP_NAME = 'DBFood';
   static const int APP_VERSION = 1;

@@ -1,3 +1,5 @@
+// Pantalla de Carga
+
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
@@ -21,7 +23,18 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
+/*
+Esta clase se ejecuta al comienzo del programa
+Esta formada por:
+      - El icono de la aplicación (el cual tiene una animación y tarda varios segundos en aparecer)
+      - El título de la aplicación
+La función de esta pantalla es cargar el contendio de la aplicación (fotos de platos), mientras proporciona al cliente una profesional Bienvenida
+ */
+
 class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin{
+
+  // Dos variables late (se inicializan después de declararse) para dar animación al icono
+
   late Animation<double> animation;
   late AnimationController _controller;
   GlobalKey<ScaffoldState> _globalKey = GlobalKey();
@@ -33,6 +46,8 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     super.dispose();
   }
   @override
+
+  // Hace uso de los controladores PopularProductController y RecommendedProductController para cargar los platos
 
   Future<void>_loadResources(bool reload)async {
     await  Get.find<ProductController>().getRecommendedProductList(reload);
@@ -52,6 +67,12 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
      Get.find<CartController>().removeCartSharedPreference();
   }
 
+  /*
+    La animación del icono dura dos segundos
+    Consiste en que va apareciendo poco a poco
+    En concreto, esta animación se llama Curves.linear, pero hay muchas más
+     */
+
   void initState() {
     super.initState();
     bool _firstTime = true;
@@ -69,6 +90,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           ),
         ));
         if(!isNotConnected) {
+
+          // Pasados los tres segundos desde el comienzo de la aplicación se redirige a la pantalla principal
+
           Timer(Duration(seconds: 3),
 
                   ()=>Get.offNamed(RouteHelper.getInitialRoute())
@@ -93,7 +117,6 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
         Timer(Duration(seconds: 3), () async {
           int _minimumVersion = 0;
 
-
               if (Get.find<AuthController>().isLoggedIn()) {
                  // Get.find<AuthController>().updateToken();
 
@@ -113,12 +136,18 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+
+    // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
+
     return Scaffold(
       key: _globalKey,
       backgroundColor: Colors.white,
       body: Column(
         //crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
+
+        // Se añaden las dos fotos: Logo y Título
+
         children: [
           ScaleTransition(
             scale: animation,

@@ -1,3 +1,5 @@
+// Clase para definir las rutas de cada sección de la aplicación. Para que quede más ordenado.
+
 import 'package:get/get.dart';
 import 'package:shopping_app/base/go_to_sign_in_page.dart';
 import 'package:shopping_app/screens/account/account_page.dart';
@@ -18,6 +20,9 @@ import '../screens/checkout/payment_page.dart';
 import '../screens/search/seach_product_page.dart';
 
 class RouteHelper {
+
+  // Variables tipo String para definir las rutas separadas por "/"
+
   static const String initial = '/';
   static const String splash = '/splash';
   static const String detailFood = '/detail-food';
@@ -34,6 +39,9 @@ class RouteHelper {
   static const String orderSuccess = '/order-successful';
   static const String updateProfile = '/update-profile';
   static const String search ='/search';
+
+  // Métodos getters que hacen referencias a las Strings de arriba.
+  // El símbolo $ lo que hace es buscar en la clase la palabra que la sigue.
 
   static String getPickMapRoute(String page, bool canRoute) => '$pickMap?page=$page&route=${canRoute.toString()}';
 
@@ -52,6 +60,15 @@ class RouteHelper {
 
   static String getUpdateProfile()=>'$updateProfile';
   static String getSearchRoute()=>'$search';
+
+  /*
+  Asociamos las Strings con cada página de la aplicación.
+  Para popularFood y recommendedFood es necesario pasar el id y el nombre de la página.
+  Esto se hace para que la navegación sea lo más óptima posible.
+  Ejemplo id: al pinchar un producto de la carta, la app debe abrir ese producto en concreto.
+  Ejemplo nombre: si pasas de CartPage a PopularFood o RecommendedFood, al pulsar "ATRÁS" debes volver a CartPage.
+  transition se usa para que la transición entre pantallas sea más fluida.
+   */
 
   static List<GetPage> routes = [
     GetPage(name: pickMap, page: () {

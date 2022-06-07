@@ -1,3 +1,5 @@
+// Pantalla de Crear una Cuenta
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +13,12 @@ import 'package:shopping_app/widgets/app_text_field.dart';
 import 'package:shopping_app/widgets/big_text.dart';
 class SignUpPage extends StatelessWidget {
    SignUpPage({Key? key}) : super(key: key);
+
+   /*
+    Cuatro variables controladores.
+    Email, contraseña, nombre y teléfono.
+     */
+
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var nameController = TextEditingController();
@@ -26,15 +34,27 @@ class SignUpPage extends StatelessWidget {
 
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
+
+    // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
+
     return Scaffold(
 
       backgroundColor: Colors.white,
       body:GetBuilder<AuthController>(builder: (authController) {
         return
+
+          // SingleChildScrollView para arreglar un fallo de texturas que daba al pinchar en uno de los campos.
+
          !authController.isLoading?  SingleChildScrollView(
-             physics: BouncingScrollPhysics(),
+
+           // Físicas añadidas para que se puede scrollear adecuadamente.
+
+         physics: BouncingScrollPhysics(),
              child: Column(
                 children: [
+
+                  // Logo de la aplicación
+
                   Container(
                     width: w,
                     height: h * 0.25,
@@ -56,6 +76,9 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // Email, contraseña, telefono y nombre
+
                   Container(
                     margin: const EdgeInsets.only(left: 20, right: 20),
                     width: w,
@@ -88,6 +111,9 @@ class SignUpPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                           color: AppColors.mainColor
                       ),
+
+                      // Crear cuenta
+
                       child: Center(
                         child: BigText(
                           text:"Crear cuenta",
@@ -98,6 +124,9 @@ class SignUpPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 10,),
+
+                  // Tienes una cuenta?
+
                   RichText(
                       text: TextSpan(
                           recognizer: TapGestureRecognizer()
@@ -110,6 +139,14 @@ class SignUpPage extends StatelessWidget {
                       )
                   ),
                   Wrap(
+
+                    /*
+                    Opciones de Crear Cuenta, formada por tres iconos:
+                          - Twitter.
+                          - Facebook.
+                          - Google.
+                    */
+
                     children: List<Widget>.generate(
                         3,
                             (index) {

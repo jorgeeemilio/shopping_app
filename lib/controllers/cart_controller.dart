@@ -1,3 +1,5 @@
+// Controlador del carrito
+
 import 'dart:core';
 
 import 'package:get/get.dart';
@@ -7,15 +9,23 @@ import 'package:shopping_app/models/cart_item.dart';
 import 'package:shopping_app/models/product.dart';
 
 class CartController extends GetxController {
+
+  // Una variable tipo CartRepo (Repositorio del carrito).
+
   final CartRepo cartRepo;
   CartController({required this.cartRepo, productRepo});
+
+  /*
+  Dos variables tipo Map para obtener los productos al carrito.
+  Una variable tipo Lista para guardar los productos al carrito.
+   */
 
    Map<int, CartItem> _items = {};
    //late Map<int, CartItem> savedItems={};
 
-   /*
-   Save the storage info to the below list
-    */
+    /*
+    Método para para modificar el carrito.
+     */
     List<CartItem> storageItems=[];
     // set here from sharedPreference when started the app
    set setCart(List<CartItem> items){
@@ -41,6 +51,10 @@ class CartController extends GetxController {
      }
    }
 
+  /*
+  Método para obtener los productos del carrito.
+   */
+
   Map<int, CartItem> get items {
      return _items;
   }
@@ -62,7 +76,7 @@ class CartController extends GetxController {
     Get.find<CartRepo>().addToCartList(_cartList);
   }
   /*
-  Get all the info from the storage
+  Método para obtener la data del carrito.
    */
   List<CartItem> getCartsData(){
     //retreive all the info the storage and set it to
@@ -92,6 +106,12 @@ class CartController extends GetxController {
   return _items.length;
 
   }
+
+  /*
+  Método para obtener el coste total del pedido.
+  Precio * cantidad
+   */
+
   double get totalAmount{
     var total = 0.0;
     _items.forEach((key, cartItem) {
@@ -99,6 +119,10 @@ class CartController extends GetxController {
     });
     return total;
   }
+
+  /*
+  Método para obtener el número total de productos.
+   */
 
   int get totalItems{
     var total=0;
@@ -108,6 +132,28 @@ class CartController extends GetxController {
     });
     return total;
   }
+
+  /*
+  Método para añadir un producto, con su cantidad correspondiente al carrito.
+  Solamente para caché y sharedPreferences (local).
+  Dos parámetros: ProductModel y cantidad.
+  Hay varias condiciones.
+
+          - Si en el carrito SÍ se encuentra ese producto:
+                  - El carrito se actualiza.
+                  - La cantidad de productos en el carrito varía (el número se actualiza al estado actual).
+                  - Si el carrito está vacío:
+                          - Se borran los productos.
+
+          - Si en el carrito NO se encuentra ese producto añadido:
+                  - Si la cantidad que se pasa por parámetro es mayor que 0:
+                            - El producto se añade al carrito.
+                  - Si la cantidad que se pasa por parámetro es 0 o menor que 0:
+                            - Sale una notificación avisando del error.
+
+          - Se añaden al carrito los productos.
+          - Se actualiza.
+   */
 
   void addItem(Product product, int quantity) {
     int total=0;
@@ -163,6 +209,10 @@ class CartController extends GetxController {
 
   }
 
+  /*
+  Método para añadir el pedido al historial del usuario.
+   */
+
   void addToHistory(){
     cartRepo.addToCartHistoryList();
     /*
@@ -174,6 +224,10 @@ class CartController extends GetxController {
   List<CartItem> getCartHistory(){
    return cartRepo.getCartHistoryList();
   }
+
+  /*
+  Método para saber si el producto existe en el carrito o no.
+   */
 
   bool isExistInCart(Product product){
 
@@ -190,6 +244,10 @@ class CartController extends GetxController {
       return false;
     }
   }
+
+  /*
+  Método para obtener la cantidad de algún producto.
+   */
 
   int getQuantity(Product product){
     if(_items.containsKey(product.id)){
@@ -210,6 +268,11 @@ class CartController extends GetxController {
     _items.remove(productId);
     update();
   }
+
+  /*
+  Método para vaciar el carrito
+  Se usa cuando se procede a pagar el pedido.
+   */
 
   void clear(){
     _items = {};

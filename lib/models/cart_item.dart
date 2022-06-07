@@ -1,6 +1,21 @@
+// Clase POJO de carrito.
+
 import 'package:shopping_app/models/product.dart';
 
 class CartItem {
+
+  /*
+  Ocho atributos. Son todas opcionales (?).
+  id --> id
+  name --> nombre
+  price --> precio
+  img --> imagen
+  quantity --> cantidad
+  isExist --> si el producto está en el carro o no
+  time --> fecha
+  product --> producto (ProductModel)
+   */
+
   String id;
   String title;
   int quantity;
@@ -9,6 +24,8 @@ class CartItem {
   String img;
   String time;
   Product product;
+
+  // Constructor
 
   CartItem({ required this.id,
     required this.title,
@@ -19,6 +36,9 @@ class CartItem {
     required this.time,
     required this.product
   });
+
+  // Mapeo de formato Json a tipo String.
+  // Se obtienen todos los atributos del carrito.
 
   factory CartItem.fromJson(Map<String, dynamic> json){
     return CartItem(
@@ -32,10 +52,12 @@ class CartItem {
       product: Product.fromJson(json['product'])
     );
   }
-  //Convert object to string like
+
+  // Mapeo de tipo String a formato Json.
+  // Se devuelven todos los atributos del carrito.
+
   Map<String, dynamic> toJson() {
     return {
-
       "id": this.id,
       "title": this.title,
       "quantity": this.quantity,

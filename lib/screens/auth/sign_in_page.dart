@@ -1,3 +1,5 @@
+// Pantalla de Iniciar Sesión
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,12 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+
+    /*
+    Dos variables controladores.
+    Teléfono y contraseña.
+     */
+
   var _phoneController = TextEditingController();
   var _passwordController = TextEditingController();
 
@@ -26,14 +34,26 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
+
+    // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
+
     return Scaffold(
 
       backgroundColor: Colors.white,
       body: GetBuilder<AuthController>(builder:( authController){
+
+        // SingleChildScrollView para arreglar un fallo de texturas que daba al pinchar en uno de los campos.
+
         return  ! authController.isLoading?SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+
+          // Físicas añadidas para que se puede scrollear adecuadamente.
+
+        physics: BouncingScrollPhysics(),
           child: Column(
                     children: [
+
+                      // Logo de la aplicación
+
                       Container(
                         width: w,
                         height: h*0.2,
@@ -47,6 +67,9 @@ class _SignInPageState extends State<SignInPage> {
                             )
                         ),
                       ),
+
+                      // Zona de bienvenida
+
                       Container(
                         margin: const EdgeInsets.only(left: 20, right: 20),
                         width: w,
@@ -81,6 +104,9 @@ class _SignInPageState extends State<SignInPage> {
                                     )
                                   ]
                               ),
+
+                              // Teléfono
+
                               child: TextField(
                                 controller: _phoneController,
                                 decoration: InputDecoration(
@@ -120,6 +146,9 @@ class _SignInPageState extends State<SignInPage> {
                                     )
                                   ]
                               ),
+
+                              // Contraseña
+
                               child: TextField(
                                 controller: _passwordController,
                                 obscureText: true,
@@ -162,6 +191,9 @@ class _SignInPageState extends State<SignInPage> {
                               borderRadius: BorderRadius.circular(15),
                               color: AppColors.mainColor
                           ),
+
+                          // Iniciar sesión
+
                           child:Center(
                             child: BigText(
                               text: 'Iniciar sesión',
@@ -172,6 +204,9 @@ class _SignInPageState extends State<SignInPage> {
                         ),
                       ),
                       SizedBox(height: 40,),
+
+                      // No tienes una cuenta?
+
                       RichText(text: TextSpan(
                           text:"¿No tienes una cuenta?",
                           style: TextStyle(
@@ -179,6 +214,9 @@ class _SignInPageState extends State<SignInPage> {
                               fontSize: 20
                           ),
                           children: [
+
+                            // Crear
+
                             TextSpan(
                                 text:" Crear",
                                 style: TextStyle(
@@ -205,6 +243,8 @@ class _SignInPageState extends State<SignInPage> {
     String _password = _passwordController.text.trim();
 
     bool _isValid = GetPlatform.isWeb ? true : false;
+
+    // Comprobaciones
 
     if (_phone.isEmpty) {
       Get.snackbar("Teléfono", "Escriba su teléfono");

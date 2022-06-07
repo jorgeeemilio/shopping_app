@@ -1,8 +1,23 @@
+// Clase POJO de producto.
+
 class ProductModel {
+
+  /*
+  Cinco atributos.
+  Tres opcionales, una late (se inicializa después de declararla) y una lista tipo getter.
+  _totalSize --> tamaño total (_ significa que es un atributo privado).
+  _typeId --> tipo de Id
+  _offset --> número de posición
+  _products --> lista productos
+  get products --> getter de lista productos
+   */
+
   late int _totalSize;
   late  int _typeId;
   late int _offset;
   late List<Product> _products;
+
+  // Constructor
 
   ProductModel(
       {required int totalSize,
@@ -20,6 +35,9 @@ class ProductModel {
   int get offset => _offset;
   List<Product> get products => _products;
 
+  // Mapeo de formato Json a tipo String.
+  // Se obtienen todos los atributos del producto.
+
   ProductModel.fromJson(Map<String, dynamic> json) {
     _totalSize = json['total_size'];
     _typeId = json['type_id']??0;
@@ -34,7 +52,24 @@ class ProductModel {
 
 }
 
+// Clase POJO de modelo de producto
+
 class Product{
+
+  /*
+  Diez atributos. Todos opcionales.
+  id --> id
+  name --> nombre
+  description --> descripción
+  price --> precio
+  stars --> estrellas (puntuación, valoración)
+  img --> imagen
+  location --> localización
+  createdAt --> creado a tal hora
+  updatedAt --> actualizado a tal hora
+  typeId --> tipo de Id
+   */
+
   int   id;
   String title;
   String sub_title;
@@ -42,6 +77,8 @@ class Product{
   String description;
   double price;
   bool isFavourite;
+
+  // Constructor
 
   Product(
       {required this.id,
@@ -52,6 +89,9 @@ class Product{
         required this.price,
         this.isFavourite = false});
 
+  // Mapeo de formato Json a tipo String.
+  // Se obtienen todos los atributos del modelo de producto.
+
   factory  Product.fromJson(Map<String, dynamic> json) {
     return Product(  id : json['id'],
       title : json['name'].toString(),
@@ -61,7 +101,10 @@ class Product{
       price:double.parse(json['price'].toString()),
       isFavourite:json['isFavourtie']??false,
     );}
-  //Convert object to string like
+
+  // Mapeo de tipo String a formato Json.
+  // Se devuelven todos los atributos del modelo de producto.
+
   Map<String, dynamic> toJson() {
     return {
 

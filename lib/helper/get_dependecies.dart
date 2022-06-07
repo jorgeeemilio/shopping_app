@@ -1,3 +1,5 @@
+// Clase para definir las dependencias del proyecto.
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
@@ -24,12 +26,24 @@ import '../data/repos/splash_repo.dart';
 
 Future<void> init() async {
 
+  // Una sola variable --> sharedPreferences (para guardar información localmente)
+
   final sharedPreference = await SharedPreferences.getInstance();
+
+  // SharedPreferences
+
   Get.lazyPut(() => sharedPreference);
+
+  // ApiClient
+
   Get.lazyPut(() => ApiClient(appBaseUrl: AppConstants.BASE_URL, sharedPreferences: Get.find()));
 
+  // Pantalla de carga
+
   Get.lazyPut(() => SplashRepo(sharedPreferences: Get.find(), apiClient: Get.find()));
-  //first load the repos
+
+  // Repositorios
+
   Get.lazyPut(() => AuthRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => LocationRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
@@ -40,7 +54,8 @@ Future<void> init() async {
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => SearchProductRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
-  //controllers
+  // Controladores
+
   Get.lazyPut(() => SplashController(splashRepo: Get.find()));
 
   Get.lazyPut(() => AuthController(authRepo: Get.find()));

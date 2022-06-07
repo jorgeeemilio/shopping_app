@@ -1,3 +1,4 @@
+// Clase para conectarse con la api y acceder a la Base de Datos (de momento local, en un futuro remoto).
 
 import 'dart:convert';
 import 'dart:developer';
@@ -11,10 +12,29 @@ import 'package:http/http.dart' as http;
 import 'package:shopping_app/uitls/app_constants.dart';
 
 class ApiClient extends GetConnect  implements GetxService{
+
+  /*
+  Tres variables.
+  token --> el token por defecto es DBToken, es una variable late (se inicializa después de ser declarada)
+  appBaseUrl --> la url es "http://10.0.2.2:8000"
+  _mainHeaders --> mapa para guardar los datos localmente
+
+  Estas variables son proporcionadas por la clase AppConstants del directorio utils.
+  La ip es 10.0.2.2 porque la aplicación se está ejecutando en el emulador de Android Studio.
+  10.0.2.2 en el emulador es equivalente a 127.0.0.1 en el equipo.
+   */
+
   late String token;
   final String appBaseUrl;
   final SharedPreferences sharedPreferences;
   late Map<String, String> _mainHeaders;
+
+  /*
+  Tiene un timeout (periodo de espera) de máximo 30 segundos.
+  Un ejemplo de uri sería: "http://10.0.2.2:8000/api/v1/products/popular" (Accede a los productos populares).
+  Si devuelve un 0 significa que NO ha habido errores.
+  Si devuelve un 1 significa que SÍ ha habido errores.
+   */
 
   ApiClient({required this.sharedPreferences, required this.appBaseUrl}) {
     baseUrl = appBaseUrl;
@@ -55,10 +75,6 @@ class ApiClient extends GetConnect  implements GetxService{
     }
   }
 
-
-
-
-
   Future<Response> postData(String uri, dynamic body,) async {
     try {
       Response response = await post(
@@ -95,5 +111,4 @@ class ApiClient extends GetConnect  implements GetxService{
     }
     return _response;
   }
-
 }

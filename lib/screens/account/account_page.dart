@@ -1,3 +1,5 @@
+// Pantalla del Perfil del Ususario
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -31,6 +33,9 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
+
     bool _isLoggedIn = Get.find<AuthController>().isLoggedIn();
     if (_isLoggedIn && Get.find<LocationController>().addressList.isEmpty) {
       Get.find<UserController>().getUserInfo();
@@ -40,6 +45,32 @@ class AccountPage extends StatelessWidget {
     } else {
       print("empty" + _isLoggedIn.toString());
     }
+
+    /*
+      En la parte de arriba se encuentra un AppBar con el título de Profile.
+      El body está compuesto por un contenedor:
+          - El ancho está modificado para que rellene toda la pantalla.
+          - El margen también está modificado.
+          - Tiene una columna como hijo, formada por seis hijos:
+              - AppIcon:
+                  - Es el icono principal del perfil del usuario (se debería implementar la opción de cambiar la foto).
+              - AccountWidget (con un AppIcon):
+                  - Teléfono del usuario.
+              - AccountWidget:
+                  - Correo del usuario.
+              - AccountWidget (con un AppIcon):
+                  - Domicilio del usuario.
+              - AccountWidget (con un AppIcon):
+                  - Bandeja de entrada de mensajes.
+              - AccountWidget (con un AppIcon):
+                  - Logout (Cerrar Sesión).
+          - Todos estos widgets se componen de una serie de características:
+              - icon: icono.
+              - backgroundColor: color del fondo.
+              - iconColor: color del icono.
+              - iconSize: tamaño del icono.
+              - size: tamaño del contorno.
+       */
 
     return Scaffold(
       appBar: AppBar(

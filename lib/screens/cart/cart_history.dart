@@ -1,3 +1,5 @@
+// Pantalla que muestra el Historial de Compras del Usuario
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';

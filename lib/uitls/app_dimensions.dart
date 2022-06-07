@@ -1,3 +1,25 @@
+/*
+Clase para definir las dimensiones que usamos en la aplicación.
+Las divisiones son para que estas dimensiones sean relativas.
+Es decir, para que la aplicación funcione igual de bien en un Iphone que en un Samsung.
+Sin importa la diferencia que tengan estas pantallas.
+El número de la división se saca con la siguiente fórmula.
+Si la pantalla mide 700, por ejemplo, y quieres poner un width de 50.
+Se haría la división de 700 entre 50 para obtener un RESULTADO.
+La variable relativa de width 50 sería el screenHeight (700) entre el RESULTADO obtenido.
+Las secciones son:
+    - Pantalla
+    - Páginas
+    - Altura de padding y margen dinámica
+    - Anchura de padding y margen dinámica
+    - Fuente
+    - Radio
+    - Tamaño de icono
+    - Tamaño de un ListView
+    - PopularFood
+    - Altura de botón
+    - Pantalla de carga
+ */
 
 import 'package:get/get.dart';
 

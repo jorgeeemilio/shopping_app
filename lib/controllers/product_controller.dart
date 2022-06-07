@@ -1,3 +1,5 @@
+// Controlador de los productos
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -12,6 +14,9 @@ import '../models/product.dart';
 import 'cart_controller.dart';
 
 class ProductController extends GetxController {
+
+  // Una variable tipo ProductRepo (Repositorio de los productos)
+
   final ProductRepo productRepo;
   ProductController({required this.productRepo});
 
@@ -41,6 +46,15 @@ class ProductController extends GetxController {
   //it will store the number of items in the memory. It stores for the item number for all the items in the shop
   int _certainItems=0;
   int get certainItems=>_certainItems+_quantity;
+
+  /*
+  Método para obtener la lista de los productos recomendados.
+  Si el código que devuelve es 200 signfica que ha sido un éxito.
+  La inicializamos a null para no repetir la data.
+  Añadimos los productos a la lista.
+  Actualizamos la lista.
+  En caso de error se imprime un mensaje por consola.
+   */
 
   Future<void> getRecommendedProductList(bool reload) async {
     if(_popularProductList == null || reload) {

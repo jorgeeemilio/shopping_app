@@ -1,3 +1,5 @@
+// Clase para deifnir los colores que usamos en la aplicación.
+
 import 'dart:ui';
 
 class AppColors{

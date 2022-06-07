@@ -1,3 +1,5 @@
+// Clase Principal del Programa.
+
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
@@ -12,6 +14,9 @@ import 'package:shopping_app/uitls/scroll_behavior.dart';
 import 'components/colors.dart';
 import 'helper/get_dependecies.dart' as dep;
 import 'package:get/get.dart';
+
+// Primero comprobamos que las dependencias se han cargado correctamente.
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dep.init();
@@ -33,6 +38,14 @@ class MyApp extends StatelessWidget {
                 primaryColor: AppColors.mainColor,
                 fontFamily: "Lato",
               ),
+
+              /*
+              Cargamos la clase SplashPage() --> pantalla de carga que llama a HomePage() --> formado por un menú de navegación dividido en: (PROVISIONAL)
+                - Inicio con los platos
+                - Pedidos
+                - Historial del carrito
+                - Perfil
+               */
 
               initialRoute: RouteHelper.getSplashRoute(),
               getPages: RouteHelper.routes,

@@ -1,3 +1,5 @@
+// Clase para que cuango el usuario no tengas ningún producto en el carrito le salga una foto de aviso.
+// Esta clase también se usa para cuando el usuario no tiene historial de compra.
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +8,20 @@ import 'package:shopping_app/uitls/styles.dart';
 
 class NoDataScreen extends StatelessWidget {
 
+  // Tiene dos variables.
+  // String text --> "Your cart is empty!" y "You didn't buy anything so far!"
+  // String imgPath --> La ruta de la imagen.
+
   final String text;
   final String imgPath;
   NoDataScreen({required this.text, this.imgPath="assets/image/empty_cart.png"});
+
+  /*
+  mainAxisAlignment y crossAxisAlignment se usan para centrar la foto.
+  height y widht para definir las dimensiones de la foto.
+  SizedBox para crear un espaciado entre la foto y el texto.
+  fontSize, color pary textAlign para darle estilo al texto.
+   */
 
   @override
   Widget build(BuildContext context) {
