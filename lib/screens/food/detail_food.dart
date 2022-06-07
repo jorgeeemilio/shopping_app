@@ -1,3 +1,5 @@
+// Pantalla que muestra los Detalles de una PopularFood
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/components/colors.dart';
@@ -14,6 +16,13 @@ import 'package:get/get.dart';
 
 
 class DetailFood extends StatelessWidget {
+
+  /*
+  Dos variables.
+  pageId --> id de la página
+  page --> nombre de la página
+   */
+
   int pageId;
   String page;
   DetailFood({Key? key, required this.pageId, required this.page}) : super(key: key);
@@ -23,14 +32,20 @@ class DetailFood extends StatelessWidget {
     //print(Get.find<CartController>().getCartsData());
     //we are getting a model here
     print("hi........."+pageId.toString());
+
+    // Hace uso del controlador: PopularProductController para acceder a la lista de los productos populares.
+
     var productItem = Get.find<ProductController>().popularProductList[pageId];
     Get.find<ProductController>().initData(productItem, pageId, Get.find<CartController>()
     );
+
+    // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          //background image
           Positioned(
               left: 0,
               right: 0,
@@ -40,12 +55,16 @@ class DetailFood extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
+
+                      // Se carga las imágenes de la API
+
                     image: NetworkImage(
                       AppConstants.UPLOADS_URL+productItem.img
                     )
                   )
                 ),
               )),
+          //icon widgets
           Positioned(
             top: 50,
               left: 20,
@@ -61,6 +80,13 @@ class DetailFood extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white70,
                     ),
+
+                    /*
+                  Al pulsar en el botón Atrás pueden pasar dos situaciones:
+                        - Si venimos de CartPage vamos a CartPage.
+                        - Si venimos de HomePage vamos a HomePage.
+                  */
+
                     child: GestureDetector(
                       onTap: (){
                        // Get.toNamed(RouteHelper.getInitialRoute());
@@ -74,6 +100,9 @@ class DetailFood extends StatelessWidget {
                           )),
                     ),
                   ),
+
+                  // Al pulsar el botón del carrito vamos a CartPage
+
                   GestureDetector(
                     onTap: (){
                       Get.toNamed(RouteHelper.getCartPage(pageId, page));
@@ -97,6 +126,10 @@ class DetailFood extends StatelessWidget {
                                     color: Colors.black54,
                                   )),
                             ),
+
+                            //Se hace uso del controler: PopularProductController para conocer la cantidad total de productos.
+                            // En consecuencia, se crea un Positioned con una serie de valores o se crea un Container vacío.
+
                             Get.find<CartController>().totalItems>=1?Positioned(
                               right: 5,
                               top:5,
@@ -128,6 +161,8 @@ class DetailFood extends StatelessWidget {
                 ],
               )),
 
+          // Introducción de la comida
+
           Positioned(
             left: 0,
             right: 0,
@@ -142,6 +177,17 @@ class DetailFood extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topRight: Radius.circular(Dimensions.padding20),
                         topLeft: Radius.circular(Dimensions.padding20))),
+
+                /*
+                    AppColumn que contiene:
+                          - Nombre del plato
+                          - Valoraciones de los cliente con estrellas
+                          - Comentarios
+                          - Media de tiempo (lento, medio, rápido)
+                          - Alergénos
+                          - Duración estimada de cocción
+                     */
+
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -213,6 +259,12 @@ class DetailFood extends StatelessWidget {
         ],
       ),
 
+      /*
+      NaigationBar formada:
+            - A la izquierda, la cantidad de unidades (se puede modicar con los botones - y +).
+            - A la derecha, un boón con el precio del producto y que pone "Añadir al carrito".
+       */
+
       bottomNavigationBar: Container(
         margin: EdgeInsets.only(
             left: Dimensions.detailFoodImgPad,
@@ -227,6 +279,9 @@ class DetailFood extends StatelessWidget {
               padding:  EdgeInsets.all(Dimensions.padding20),
               child: Row(
                 children: [
+
+                  // Icono - reduce la cantidad al ser pulsado
+
                   GestureDetector(
                     onTap: (){
                       Get.find<ProductController>().setQuantity(false, productItem);
@@ -234,10 +289,16 @@ class DetailFood extends StatelessWidget {
                     child: Icon(Icons.remove, color: AppColors.signColor),
                   ),
                   SizedBox(width: Dimensions.padding10),
+
+                  // Cantidad de unidades del plato
+
                   GetBuilder<ProductController>(builder: (_){
                     return BigText(text: Get.find<ProductController>().certainItems.toString(), color: AppColors.mainBlackColor);
                   },),
                   SizedBox(width: Dimensions.padding10),
+
+                  // Icono + aumenta la cantidad al ser pulsado
+
                   GestureDetector(
                     onTap: (){
                       Get.find<ProductController>().setQuantity(true, productItem);
@@ -258,6 +319,10 @@ class DetailFood extends StatelessWidget {
                   ]),
             ),
             Expanded(child: Container()),
+
+            // Botón de añadir al carrito.
+            // Al pulsar en él se añaden tantos productos como haya indicado el usuario.
+
             GestureDetector(
               onTap: (){
                 Get.find<ProductController>().addItem(productItem);

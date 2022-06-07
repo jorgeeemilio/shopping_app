@@ -1,3 +1,5 @@
+// Pantalla de Bienvenida que posee el Menú de Navegación
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -16,16 +18,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  // Se inicializa el índice a 0
+  // Cuando la aplicación se ejecuta el índice es 0.
+
   int _selectedIndex=0;
+
+  // Las cuatro páginas del Menu Navigation
+
   List pages=[
     HomePageBody(),
     OrderScreen(),
-
     CartHistory(),
     AccountPage(),
   ];
 
-
+// Para actualizar el índice
 
   void onTap(int index){
     setState(() {
@@ -49,15 +57,27 @@ class _HomePageState extends State<HomePage> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: [
+
+          // Inicio
+
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined),
           label: "home"
           ),
+
+          // Pedidos
+
           BottomNavigationBarItem(icon: Icon(Icons.archive),
               label: "home"
           ),
+
+          // Historial del carrito
+
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),
               label: "home"
           ),
+
+          // Perfil
+
           BottomNavigationBarItem(icon: Icon(Icons.person),
               label: "home"
 

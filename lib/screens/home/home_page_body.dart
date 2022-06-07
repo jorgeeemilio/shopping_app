@@ -1,3 +1,5 @@
+// Parte Superior de la Carta
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/components/colors.dart';
@@ -73,6 +75,10 @@ class _HomePageBodyState extends State<HomePageBody> {
          },
          child: Column(
             children: [
+
+              // Esta sería la parte de arriba, el header.
+              // Donde pone Umbrete, La Receta Sabrosona y el icono de la lupa.
+
               Container(
                 color: Colors.white.withOpacity(_opacity),
                 child: Container(
@@ -87,9 +93,15 @@ class _HomePageBodyState extends State<HomePageBody> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+
+                          // Umbrete
+
                           BigText(text: "Umbrete", color: AppColors.mainColor),
                           Row(
                             children: [
+
+                              // La Receta Sabrosona
+
                               TextWidget(text: "La Receta Sabrosona", color: Colors.black54),
                               Icon(Icons.arrow_drop_down_rounded, )
                             ],
@@ -106,6 +118,9 @@ class _HomePageBodyState extends State<HomePageBody> {
                                 borderRadius: BorderRadius.circular(Dimensions.borderRadius15),
                                 color: AppColors.mainColor
                             ),
+
+                            // Icono de lupa para buscar platos
+
                             child: Icon(Icons.search, color:Colors.white),
                             //onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
                           ),
@@ -118,6 +133,9 @@ class _HomePageBodyState extends State<HomePageBody> {
               Expanded(
                   child: SingleChildScrollView(
                       controller: scrollController,
+
+                      // Llama a la clase MainFoodPage(), la cual es la principal, donde se encuentran los platos
+
                       child:  MainFoodPage())),
             ],
       ),

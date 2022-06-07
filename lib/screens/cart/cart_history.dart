@@ -29,6 +29,12 @@ many times a certain time is found
  */
     var cartHistory=[];
     var originalHistory=[];
+
+    // Tiene implementado el controller de carrito (CartController)
+    // Se da la vuelta a la lista para que arriba estén los últimos pedidos, en lugar de abajo
+    // Una variable tipo Map para manipular los productos por cada compra
+    // Se recorre la lista del historial de compra y se añade al mapa la fecha y el valor
+
     originalHistory =  Get.find<CartController>().getCartHistory();
     Iterable inReverse = originalHistory.reversed;
     cartHistory = inReverse.toList();
@@ -52,14 +58,17 @@ many times a certain time is found
         cartItemsPerOrder.putIfAbsent(cartHistory[i].time??DateTime.now().toString(), () => 1);
       }
     }
-    /*
-    returns list of int
-     */
+
+    // Método para castear los productos de un pedido a lista
+
     List<dynamic> cartOrderTimeList(){
       return cartItemsPerOrder.entries.map((e){
         return e.value;
       }).toList();
     }
+
+    // Método para castear la fecha de un pedido a lista
+
     List<dynamic> cartOrderTimeToList(){
       return cartItemsPerOrder.entries.map((e){
         return e.key;
@@ -72,6 +81,9 @@ many times a certain time is found
       var outputDate="";
       if(index<cartHistory.length){
 
+        // Widget para mostrar una fecha en formato europeo. Ejemplo: 14/04/2022 21:29
+        // Para hacer el cambio a formato europeo he importado la librería intl: ^0.17.0
+
         DateTime parseDate=  DateFormat("yyyy-MM-dd HH:mm:ss").parse(cartHistory[index].time!);
         var inputDate = DateTime.parse(parseDate.toString());
         var outputFormat=DateFormat("dd/MM/yyyy HH:mm");
@@ -80,9 +92,24 @@ many times a certain time is found
       }
       return BigText(text:outputDate, color:AppColors.titleColor);
     }
+
+    /*
+    Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
+    Formado por:
+          - Columna con el título e icono de la Página: CART HISTORY
+          - Se evalua una condición: Para ello se usa un cartController y el método getCartHistoryList()
+                - Si las lista del historial de compra está LLENA:
+                      - Se crea un Widget tipo Expanded, es decir, se expande hacia abajo.
+                Si la lista del histoiral de compra está VACÍA:
+                      - Se muestra una foto de una caja vacía, junto a un mensaje de feedback al usuario.
+     */
+
     return  Scaffold(
       body: Column(
         children: [
+
+          //Container que contiene una Columna títulada: CART HISTORY
+
           Container(
             height: 100,
             width: double.maxFinite,
@@ -106,17 +133,27 @@ many times a certain time is found
 
             ),
           ),
+
+          // Si la lista del historial de compra está llena
+
           GetBuilder<CartController>(builder: (_cartController){
             print("History length is "+_cartController.getCartHistory().length.toString());
+
+            // Expanded, Container --> Comienza el Widget Expanded, cuyo hijo es un Container
 
             return _cartController.getCartHistory().length>0? Expanded(child:   Container(
                 margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 //height: double.maxFinite,
 
                 child: MediaQuery.removePadding(context: context, removeTop: true,
+
+                  // ListView --> Lista donde se muestran los pedidos
+
                   child: ListView(
                     children: [
                       for(int index=0; index<xy.length; index++)
+
+                      // Container --> Contenedor de la izquierda
 
                         Container(
                           height: 130,
@@ -126,6 +163,9 @@ many times a certain time is found
                             children: [
                               Container(
                                 height: 130,
+
+                                // Column --> Columna de la izquierda
+
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,14 +180,21 @@ many times a certain time is found
                                       return BigText(text:outputDate, color:AppColors.titleColor);*/
                                    // }()
                                    // ),*/
+
+                                    // Wrap --> Widget que muestra los hijos en horizontal o vertical
+
                                     Wrap(
                                         direction: Axis.horizontal,
+
+                                        // List.generate --> Generar una lista según los productos que hay por cada pedido
 
                                         children: List.generate(xy[index], (index1) {
                                           if(listCounter<cartHistory.length) {
                                             listCounter++;
                                           }
                                           if (index1 <= 2) {
+
+                                            // Container --> Si hay como máximo dos productos en el pedido
 
                                             return Container(
                                               margin: const EdgeInsets.only(
@@ -173,6 +220,9 @@ many times a certain time is found
                                               ),
                                             );
                                           } else{
+
+                                            //Container --> Si hay más de dos productos en el pedido
+
                                             return Container();
                                           }
 
@@ -182,12 +232,22 @@ many times a certain time is found
                                   ],
                                 ),
                               ),
+
+                              // Container --> Contenedor de la derecha
+
                               Container(
                                 height: 100,
+
+                                // Column --> Columna de la derecha
+
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
+
+                                    // SmallText, BigText, GestureDetector
+                                    // Ejemplo: Total, 2 Items, one more
+
                                     TextWidget(text: "Total", color: AppColors.mainBlackColor),
                                     BigText(text:xy[index].toString()+" Plato/s", color:AppColors.titleColor),
                                     Container(
@@ -200,6 +260,9 @@ many times a certain time is found
                                       child: Row(children: [
                                         SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
                                         GestureDetector(
+
+                                          // onTap
+                                          // Al pulsar en one more se redirige a CartPage para poder modificar el pedido
 
                                           onTap: (){
 
@@ -217,6 +280,9 @@ many times a certain time is found
                                             Get.find<CartController>().addToCartList();
                                             Get.toNamed(RouteHelper.getCartPage(0, "cart-history"));
                                           },
+
+                                          // SmallText --> Texto del botón one more
+
                                           child: Text("uno más", style: robotoMedium.copyWith(
                                             fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).primaryColor,
                                           )),
@@ -232,9 +298,36 @@ many times a certain time is found
 
                     ],
                   ),)
+
+              // Si la lista del historial de compra está vacía
+
             )):NoDataScreen(text: "Historial vacío ");
           })
     ]));
   }
 }
+
+/*
+La estrucutra del Widget Expanded es un poco en enrevesada.
+Un resumen sería así:
+- Expanded
+  - Container
+    - MediaQuery
+      - ListView
+        - Container
+          - Column
+            - Row
+              - Wrap
+                - List.generate
+                  - Container
+                  - Container
+              - Container
+                - Column
+                  - SmallText
+                  - BigText
+                  - GestureDetector
+                    - onTap
+                    - Container
+                      - SmallText
+ */
 

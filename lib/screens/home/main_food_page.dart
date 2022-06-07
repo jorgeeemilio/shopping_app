@@ -1,3 +1,5 @@
+// Pantalla donde se muestra la Carta al Cliente (Pantalla Principal)
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,22 @@ class MainFoodPage extends StatefulWidget {
   State<MainFoodPage> createState() => _MainFoodPageState();
 }
 
+/*
+Esta es una de las clases más extensas del programa.
+No tiene mucha complejidad, pero si mucho contenido.
+En ella se ven los platos de la carta (PopularFood y RecommendedFood)
+ */
+
 class _MainFoodPageState extends State<MainFoodPage> {
+
+  /*
+  Hace uso del controlador PageController para:
+        - Desplazar el menú de los platos PopularFood horizontalmente.
+        ´- Esto es necesario porque tienen una sútil animación.
+        - Hacen zoom in y zoom out al ir pasando.
+        - Los puntos de debajo se van actualizando confome se pasan.
+   */
+
   ProductController controller = Get.find();
   PopularProduct popularProductController = Get.find();
   PageController pageController = PageController(viewportFraction: Dimensions.viewPort);
@@ -48,6 +65,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
 
   };
 
+  /*
+  Estos son matemáticas dífcil de entender
+  Es como funciona el panel deslizable horizontal de los Platos Populares
+  Como se hace el zoom in y zoom out al ir deslizando platos
+   */
 
   //scale factor
   double _scaleFactor = .8;
@@ -80,6 +102,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
       transform: matrix,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
+
+        // Al pinchar en algún Plato Recomendado se hace uso del RouteHelper getRecommendedFoud
+
         child:   GestureDetector(
           onTap: (){
             Get.toNamed(RouteHelper.getRecommendedFoodRoute(index, "recommended"));
@@ -88,6 +113,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
             alignment: Alignment.topCenter,
             child: Stack(
               children: [
+
+                // Panel deslizable horizontalmente (Platos Recomendados)
+                // Cuando los platos todavía no se ven aparece un icono de cargando
+
                 Container(
                     padding:  EdgeInsets.only(left: Dimensions.padding20, top: Dimensions.padding20),
                     //previously 220
@@ -99,6 +128,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         color:index.isEven?Color(0xFF69c5df):Color(0xFF9294cc),
                         image: DecorationImage(
                             fit: BoxFit.cover,
+
+                            // Se cargan las imágenes de la API
+
                             image: NetworkImage(
                                 AppConstants.UPLOADS_URL+product.img
                             )
@@ -134,14 +166,31 @@ class _MainFoodPageState extends State<MainFoodPage> {
 
                         ]
                     ),
+
+                    /*
+                    Contenedor formado por:
+                          - Nombre del plato
+                          - Valoraciones de los cliente con estrellas
+                          - Comentarios
+                          - Media de tiempo (lento, medio, rápido)
+                          - Alergénos
+                          - Duración estimada de cocción
+                     */
+
                     child: Container(
                       padding: EdgeInsets.only(top: Dimensions.padding10, left: 15, right: 15),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+
+                          // Título
+
                           BigText(text: product.title, color: AppColors.titleColor),
                           SizedBox(height: Dimensions.padding10,),
+
+                          // Valoraciones (estrellas) y comentarios
+
                           Row(
                             children: [
                               Wrap(
@@ -155,6 +204,13 @@ class _MainFoodPageState extends State<MainFoodPage> {
                             ],
                           ),
                           SizedBox(height: Dimensions.padding20,),
+
+                          /*
+                          Media de tiempo (lento, medio, rápido)
+                          Alergénos
+                          Duración estimada de cocción
+                           */
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -193,6 +249,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
          // mainAxisSize: MainAxisSize.min,
           children: [
             //for the pageview
+
+            // Panel deslizable verticalmente (Platos Populares)
+            // Cuando los platos todavía no se ven aparece un icono de cargando
+
             GetBuilder<ProductController>(builder: (productController){
               return productController.isLoading?Container(
                 color:Color(0xFFf9f9fa),
@@ -220,6 +280,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
               );
             }),
             //for the dots
+
+            // Menú de botones que están debajos de los Platos Populares
+            // Para hacer uso de estos botones he implementado la librería dots_indicator: ^2.1.0
+
             GetBuilder<ProductController>(builder: (productController){
               return new DotsIndicator(
                 dotsCount:productController.length==0?1:productController.length,
@@ -235,6 +299,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
             //originally height is 30
             SizedBox(height: Dimensions.sizedBoxHeight,),
             //texts and the dot
+
+            // Texto que hace separación los Platos Populares con los Platos Recomendados
+
             Container(
                 margin:  EdgeInsets.only(left: Dimensions.appMargin),
                 child: Row(
@@ -256,6 +323,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     padding:  EdgeInsets.only(top: Dimensions.padding10),
                     itemCount: popularProducts.popularProductList.length,
                     itemBuilder: (context, index) {
+
+                      // Al pinchar en algún Plato Popular se hace uso del RouteHelper getPopupalFood
+
                       return GestureDetector(
                           onTap: (){
                             Get.toNamed(RouteHelper.getPopularFoodRoute(index, "popular", RouteHelper.initial));
@@ -272,6 +342,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
                                       borderRadius: BorderRadius.circular(Dimensions.padding20),
                                       image: DecorationImage(
                                           fit: BoxFit.cover,
+
+                                          // Se cargan las imágenes de la API
+
                                           image: NetworkImage(
                                               AppConstants.UPLOADS_URL+popularProducts.popularProductList[index].img
 
@@ -280,6 +353,15 @@ class _MainFoodPageState extends State<MainFoodPage> {
                                   ),
                                 ),
                                 Expanded(
+
+                                  /*
+                                  Contenedor formado por:
+                                        - Nombre del plato
+                                        - Media de tiempo (lento, medio, rápido)
+                                        - Alergénos
+                                        - Duración estimada de cocción
+                                   */
+
                                   child: Container(
                                     padding: Dimensions.isWeb?EdgeInsets.only(left: Dimensions.PADDING_SIZE_SMALL, right: Dimensions.PADDING_SIZE_SMALL):EdgeInsets.all(0),
                                     height: Dimensions.listViewCon,
@@ -296,10 +378,20 @@ class _MainFoodPageState extends State<MainFoodPage> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
+
+                                          // Titulo
+
                                           BigText(text: popularProducts.popularProductList[index].title,/* element.value,*/
                                               color: Colors.black87),
                                           SizedBox(height: Dimensions.padding10,),
                                           SizedBox(height: Dimensions.padding10,),
+
+                                          /*
+                                          Media de tiempo (lento, medio, rápido)
+                                          Alergénos
+                                          Duración estimada de cocción
+                                           */
+
                                           Row(
                                             mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                             children: [

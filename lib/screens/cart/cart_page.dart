@@ -1,3 +1,5 @@
+// Pantalla del Carrito de Compra
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,19 +32,30 @@ class CartPage extends StatelessWidget {
     final TextEditingController _noteController = TextEditingController();
   //  var location = Get.find<LocationController>().getUserAddress();
 
+    // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
+
     return Scaffold(
     backgroundColor: Colors.white,
 
       body:Stack(
         children: [
+
+          // Se posicionan los tres iconos de la parte superior
+
           Positioned(
               top: 60,
               left: 20,
               right: 20,
+
+              // Columna que incluye los tres iconos separados por spaceBetween
+
               child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+
+                  // Icono volver atrás, no está implementada la función
+
                   Container(
                     padding: const EdgeInsets.only(left: 6),
                     width: 40,
@@ -51,6 +64,9 @@ class CartPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.mainColor,
                     ),
+
+                    // Icono de casa, si se pulsa se redirige a la pantalla principal
+
                     child: GestureDetector(
                       onTap: (){
                         if(page=="recommended"){
@@ -63,6 +79,9 @@ class CartPage extends StatelessWidget {
                           Get.offNamed(RouteHelper.getInitialRoute());
                         }
                       },
+
+                      // Icono de carrito, si se pulsa se redirige a la pantalla de historial de compra (regular porque no sale el navigation menu)
+
                       child: Center(
                           child: Icon(
                             Icons.arrow_back_ios,
@@ -104,6 +123,9 @@ class CartPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       color: AppColors.mainColor,
                     ),
+
+                    // Usamos un cartController
+
                     child: GetBuilder<CartController>(builder:(_){
                       return Stack(
                         children: [
@@ -161,6 +183,16 @@ class CartPage extends StatelessWidget {
                     return  MediaQuery.removePadding(
                       context: context,
                       removeTop: true,
+
+                      /*
+                        Listas que componen los productos, formadas por:
+                              - Foto del producto
+                              - Título
+                              - Categoría (Ejemplo: Spicy)
+                              - Precio
+                              - Cantidad (se puede modificar con botones de - y +)
+                         */
+
                       child: ListView.builder(
                           itemCount: _cartList.length,
                           itemBuilder: (_, index){
@@ -175,6 +207,15 @@ class CartPage extends StatelessWidget {
                                 //this setting should come at the end to make sense. this is important for the cart + - button
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
+
+                                  /*
+                                      Si se pulsan las fotos pueden ocurrir dos situaciones:
+                                            - Si el producto ha sido añadido hace poco:
+                                                  - Se abre la pantalla del producto, ya sea PopularFood o RecommendedFood
+                                            - Si el producto lleva bastante tiempo en el carrito (cargado por sharedPreferences):
+                                                  - Nos sale un aviso de que no se puede cargar el producto
+                                       */
+
                                   GestureDetector(
                                     onTap: (){
                                       var getPageIndex=Get.find<ProductController>().popularProductList.indexOf(_cartList[index].product);
@@ -199,6 +240,9 @@ class CartPage extends StatelessWidget {
                                         }
                                       }
                                     },
+
+                                    // Contenedor en el cual se encuentran las imágenes de los productos
+
                                     child: Container(
                                       width: 100,
                                       height: 100,
@@ -215,6 +259,9 @@ class CartPage extends StatelessWidget {
                                     ),
                                   ),
                                   SizedBox(width: Dimensions.padding10,),
+
+                                  // Título, categoría, precio y cantidad
+
                                   Expanded(
                                     child: Container(
                                       //since column needs height, without this container height this column would take min
@@ -230,6 +277,9 @@ class CartPage extends StatelessWidget {
                                         //spaceEvenly has the lowest upper boundary
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
+
+                                          // Título
+
                                           Text(
 
                                             cartController.getCarts[index].title,
@@ -245,9 +295,15 @@ class CartPage extends StatelessWidget {
                                           ),
                                           /* BigText(text: cartController.getCarts[index].title,
                                                   color: AppColors.titleColor),*/
+
+                                          // Mensaje Que aproveche
+
                                           TextWidget(text:"¡Que aproveche!", color:AppColors.textColor,),
                                           Row(
                                             children: [
+
+                                              // Precio
+
                                               BigText(text: cartController.getCarts[index].price.toString()+" \€", color: Colors.redAccent),
                                               SizedBox(width: Dimensions.padding10,),
                                               Expanded(child: Container()),
@@ -257,6 +313,9 @@ class CartPage extends StatelessWidget {
                                                   padding:  EdgeInsets.all(Dimensions.padding5),
                                                   child: Row(
                                                     children: [
+
+                                                      // Al pulsar - se reduce la cantidad en uno
+
                                                       GestureDetector(
                                                         onTap: (){
 
@@ -267,10 +326,16 @@ class CartPage extends StatelessWidget {
                                                         child: Icon(Icons.remove, color: AppColors.signColor),
                                                       ),
                                                       SizedBox(width: Dimensions.padding5),
+
+                                                      // Cantidad
+
                                                       GetBuilder<ProductController>(builder: (_){
                                                         return BigText(text: _cartList[index].quantity.toString(), color: AppColors.mainBlackColor);
                                                       },),
                                                       SizedBox(width: Dimensions.padding5),
+
+                                                      // Al pulsar + se aumenta la cantidad en uno
+
                                                       GestureDetector(
                                                         onTap: (){
                                                           var quantity = 1;
@@ -307,11 +372,28 @@ class CartPage extends StatelessWidget {
                           }),
                     );
                   }),
+
+                  // Si se detecta que no hay NINGÚN producto, sale un aviso
+
                 )):NoDataScreen(text: "Your cart is empty!");
           })
         ],
       ),
+
+        /*
+        Parte de abajo de la pantalla, formada por:
+              - Coste total del pedido
+              - Botón de Checkout para finalizar la compra
+         */
+
       bottomNavigationBar: GetBuilder<OrderController>(builder: (orderController){
+
+        /*
+            Una condición:
+                  - Si se detecta que hay algún producto aparece el coste total del pedido y el botón Checkout
+                  - Si no se detecta ningún producto aparece un contenedor vacío
+            */
+
           return !orderController.isLoading? Container(
             width: double.maxFinite,
             margin: EdgeInsets.only(
@@ -347,6 +429,12 @@ class CartPage extends StatelessWidget {
                   ),
                   Expanded(child: Container()),
 
+                  /*
+                Si se pulsa el botón de Checkout pueden pasar dos situaciones:
+                      - Si hay algún producto se finaliza la compra
+                      - Si no hay ningún producto nos sale un aviso de error
+                 */
+
                   GestureDetector(
                       onTap: (){
                         if(!Get.find<AuthController>().isLoggedIn()){
@@ -379,6 +467,9 @@ class CartPage extends StatelessWidget {
                           }
                         }
                       },
+
+                      // Botón de Checkout
+
                       child: Container(
                         child: BigText(
                           size: 20,
@@ -400,6 +491,9 @@ class CartPage extends StatelessWidget {
                   )
 
                 ],
+
+                // Contenedor vacío
+
               ):Container();
             }),
             decoration: BoxDecoration(
