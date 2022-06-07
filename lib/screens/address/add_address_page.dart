@@ -11,6 +11,7 @@ import 'package:shopping_app/routes/route_helper.dart';
 import 'package:shopping_app/screens/address/pick_map_screen.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/big_text.dart';
+import 'package:shopping_app/widgets/icon_text_widget.dart';
 
 import '../../base/custom_snackbar.dart';
 import '../location/permission_dialogue.dart';
@@ -137,16 +138,17 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       Center(child: !locationController.loading ? Icon(Icons.web)
                           : CircularProgressIndicator()),
                       Positioned(
-                        top: 10, right: 0,
+                        top: 0, right: -20,
                         child: InkWell(
           onTap: () => _checkPermission(() {
           locationController.getCurrentLocation(true, mapController: locationController.mapController);
           }),
                           child: Container(
-                            width: 30, height: 30,
+                            width: 120, height: 60,
                             margin: EdgeInsets.only(right: Dimensions.PADDING_SIZE_LARGE),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL), color: Colors.white),
-                            child: Icon(Icons.fullscreen, color: Theme.of(context).primaryColor, size: 20),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL), color: AppColors.mainColor),
+                            //child: Icon(Icons.fullscreen, color: Theme.of(context).primaryColor, size: 20),
+                            child: IconAndTextWidget(text: "     PINCHA AQUÍ\n   PARA OBTENER\nUBICACIÓN ACTUAL", color: Colors.black, icon: Icons.location_on, iconColor: AppColors.rojo),
                           ),
                         ),
                       ),

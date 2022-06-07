@@ -25,4 +25,5 @@ class AppColors{
   static final Color verde = const Color(0xff59ce3e);
   static final Color amarillo = const Color(0xffdee217);
   static final Color naranja = const Color(0xffe88312);
+  static final Color rojo = const Color(0xffe81212);
 }
