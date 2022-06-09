@@ -112,7 +112,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
             alignment: Alignment.topCenter,
             child: Stack(
               children: [
-
                 // Panel deslizable horizontalmente (Platos Recomendados)
                 // Cuando los platos todavía no se ven aparece un icono de cargando
 

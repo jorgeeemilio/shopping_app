@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 import 'package:shopping_app/controllers/user_controller.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/big_text.dart';
-import 'package:shopping_app/widgets/text_widget.dart';
 
 import '../../routes/route_helper.dart';
 import 'main_food_page.dart';
@@ -83,7 +82,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                 color: Colors.white.withOpacity(_opacity),
                 child: Container(
                   //if we set bottom to topBar on mobile we will get 60
-                  margin:  EdgeInsets.only(top:Dimensions.topBar, bottom: 5),
+                  margin:  EdgeInsets.only(top:Dimensions.topBar/1.5, bottom: 10),
                   height: 55,
                   padding:  EdgeInsets.only( left: Dimensions.appMargin, right: Dimensions.appMargin),
                   child: Row(
@@ -93,19 +92,8 @@ class _HomePageBodyState extends State<HomePageBody> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-
-                          // Umbrete
-
-                          BigText(text: "Umbrete", color: AppColors.mainColor),
-                          Row(
-                            children: [
-
-                              // La Receta Sabrosona
-
-                              TextWidget(text: "La Receta Sabrosona", color: Colors.black54),
-                              Icon(Icons.arrow_drop_down_rounded, )
-                            ],
-                          )
+                          SizedBox(height: 15),
+                          BigText(text: "LA RECETA SABROSONA", color: AppColors.mainColor, size: 20),
                         ],
                       ),
                       Center(
