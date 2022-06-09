@@ -6,7 +6,6 @@ import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/screens/account/account_page.dart';
 import 'package:shopping_app/screens/cart/cart_history.dart';
 import 'package:shopping_app/screens/home/home_page_body.dart';
-import 'package:shopping_app/screens/order/order_screen.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -27,7 +26,6 @@ class _HomePageState extends State<HomePage> {
 
   List pages=[
     HomePageBody(),
-    OrderScreen(),
     CartHistory(),
     AccountPage(),
   ];
@@ -59,14 +57,8 @@ class _HomePageState extends State<HomePage> {
 
           // Inicio
 
-          BottomNavigationBarItem(icon: Icon(Icons.home_outlined),
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled),
           label: "home"
-          ),
-
-          // Pedidos
-
-          BottomNavigationBarItem(icon: Icon(Icons.archive),
-              label: "home"
           ),
 
           // Historial del carrito
