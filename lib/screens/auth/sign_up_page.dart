@@ -32,8 +32,8 @@ class SignUpPage extends StatelessWidget {
       "f.png"
     ];
 
-    double w = MediaQuery.of(context).size.width;
-    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width*1.25;
+    double h = MediaQuery.of(context).size.height*1.25;
 
     // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
 
@@ -94,7 +94,7 @@ class SignUpPage extends StatelessWidget {
                         AppTextField(hintText:"Teléfono", textController:phoneController, icon:Icons.phone),
                         SizedBox(height: 20,),
                         AppTextField(hintText:"Nombre", textController:nameController, icon:Icons.person),
-                        SizedBox(height: 20,),
+                        SizedBox(height: 40,),
 
 
                       ],
@@ -123,55 +123,6 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10,),
-
-                  // Tienes una cuenta?
-
-                  RichText(
-                      text: TextSpan(
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.back(),
-                          text: "¿Tienes una cuenta?",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.grey[500]
-                          )
-                      )
-                  ),
-                  Wrap(
-
-                    /*
-                    Opciones de Crear Cuenta, formada por tres iconos:
-                          - Twitter.
-                          - Facebook.
-                          - Google.
-                    */
-
-                    children: List<Widget>.generate(
-                        3,
-                            (index) {
-                          return GestureDetector(
-                            onTap: () {
-
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Colors.transparent,
-                                //backgroundColor: AppColors.mainColor,
-                                child: CircleAvatar(
-                                  radius: 25,
-                                  backgroundImage: AssetImage(
-                                      "img/" + images[index]
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }
-                    ),
-                  )
                 ],
               ),
            ):CustomLoader();
