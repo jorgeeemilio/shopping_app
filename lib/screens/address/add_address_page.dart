@@ -155,42 +155,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                     ]),
                   ),
                 ),
-                SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-
-                SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
-                SizedBox(height: 50, child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: locationController.addressTypeList.length,
-                  itemBuilder: (context, index) => InkWell(
-                    onTap: () {
-                      locationController.setAddressTypeIndex(index);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,
-                          vertical: Dimensions.PADDING_SIZE_SMALL),
-                      margin: EdgeInsets.only(right: Dimensions.PADDING_SIZE_SMALL),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL),
-                        color: Theme.of(context).cardColor,
-                        boxShadow: [BoxShadow(color: Colors.grey[200]!,
-                            spreadRadius: 1, blurRadius: 5)],
-                      ),
-                      child: Row(children: [
-                        Icon(
-                          index == 0 ? Icons.home_filled : index == 1 ? Icons.work : Icons.location_on,
-                          color: locationController.addressTypeIndex == index
-                              ? Theme.of(context).primaryColor : Theme.of(context).disabledColor,
-                        ),
-                        SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_SMALL),
 
-                      ]),
-                    ),
-                  ),
-                )),
-                SizedBox(height: 20),
                 BigText(text:"Domiclio a repartir", color:AppColors.mainBlackColor),
 
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -277,7 +244,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
-                BigText(text:"Contact person number",color:AppColors.mainBlackColor),
+                BigText(text:"Número de contacto",color:AppColors.mainBlackColor),
                 SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
                 Container(
                   decoration: BoxDecoration(
@@ -295,8 +262,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   child: TextField(
                     controller: _contactPersonNumberController,
                     decoration: InputDecoration(
-                        hintText: "Contact person number",
-                        prefixIcon: Icon(Icons.email, color:AppColors.yellowColor),
+                        hintText: "Número de contacto",
+                        prefixIcon: Icon(Icons.phone, color:AppColors.yellowColor),
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: BorderSide(
