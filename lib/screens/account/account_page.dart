@@ -1,7 +1,5 @@
 // Pantalla del Perfil del Ususario
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:shopping_app/base/go_to_sign_in_page.dart';
 import 'package:shopping_app/components/colors.dart';
@@ -168,19 +166,13 @@ class AccountPage extends StatelessWidget {
                                           Get.toNamed(
                                               RouteHelper.getAddAddressRoute());
                                         },
-                                        child: AccountWidgets("Address",
+                                        child: AccountWidgets("Domicilio",
                                             icon: Icons.location_on,
                                             backgroundColor:
                                                 AppColors.yellowColor),
                                       );
                                     }
                                   }),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  AccountWidgets("Vacío",
-                                      icon: Icons.message,
-                                      backgroundColor: Colors.redAccent),
                                   SizedBox(
                                     height: 20,
                                   ),
