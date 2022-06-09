@@ -83,7 +83,7 @@ class _HomePageBodyState extends State<HomePageBody> {
                 color: Colors.white.withOpacity(_opacity),
                 child: Container(
                   //if we set bottom to topBar on mobile we will get 60
-                  margin:  EdgeInsets.only(top:Dimensions.topBar, bottom: 15),
+                  margin:  EdgeInsets.only(top:Dimensions.topBar, bottom: 5),
                   height: 55,
                   padding:  EdgeInsets.only( left: Dimensions.appMargin, right: Dimensions.appMargin),
                   child: Row(

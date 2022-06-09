@@ -117,7 +117,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 // Cuando los platos todavía no se ven aparece un icono de cargando
 
                 Container(
-                    padding:  EdgeInsets.only(left: Dimensions.padding20, top: Dimensions.padding20),
+                    padding:  EdgeInsets.only(left: Dimensions.padding20, top: Dimensions.padding20/2),
                     //previously 220
                     height: Dimensions.pageViewInnerCon,
                     width: MediaQuery.of(context).size.width-20,
@@ -140,7 +140,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    margin: EdgeInsets.only(bottom: Dimensions.margin40, left: Dimensions.appMargin, right: Dimensions.appMargin),
+                    margin: EdgeInsets.only(bottom: Dimensions.margin40/2, left: Dimensions.appMargin, right: Dimensions.appMargin),
                     width: double.maxFinite,
                     //previously 120
                     height: Dimensions.pageViewInnerConText,
@@ -278,7 +278,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
               );
             }),
             //originally height is 30
-            SizedBox(height: Dimensions.sizedBoxHeight,),
+            SizedBox(height: Dimensions.padding10,),
             //texts and the dot
 
             // Texto que hace separación los Platos Populares con los Platos Recomendados
@@ -288,12 +288,12 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    BigText(text: "Popular", color: Colors.black),
+                    BigText(text: "Comidas populares", color: Colors.black),
                     SizedBox(width: 10,),
                   ],
                 )
             ),
-            SizedBox(height: Dimensions.sizedBoxHeight,),
+            SizedBox(height: Dimensions.padding10,),
             //here we do with expanded. but in that case parent is not
             // wraped with singlechild scrollview
 
