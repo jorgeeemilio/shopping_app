@@ -293,23 +293,6 @@ class MoreFood extends StatelessWidget {
 
                 // Icono Me Gusta (función no implementada)
 
-                Container(
-                  padding: EdgeInsets.all(Dimensions.padding20),
-                  child: Icon(
-                    Icons.favorite,
-                    color: AppColors.mainColor,
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(Dimensions.padding20),
-                      boxShadow: [
-                        BoxShadow(
-                            offset: Offset(0, 0),
-                            blurRadius: 10,
-                            //spreadRadius: 3,
-                            color: AppColors.titleColor.withOpacity(0.05))
-                      ]),
-                ),
                 Expanded(child: Container()),
 
                 // Botón de añadir al carrito.
