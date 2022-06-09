@@ -11,7 +11,6 @@ import 'package:shopping_app/uitls/app_constants.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/big_text.dart';
 import 'package:shopping_app/widgets/icon_text_widget.dart';
-import 'package:shopping_app/widgets/text_widget.dart';
 import 'package:get/get.dart';
 
 
@@ -181,8 +180,6 @@ class DetailFood extends StatelessWidget {
                 /*
                     AppColumn que contiene:
                           - Nombre del plato
-                          - Valoraciones de los cliente con estrellas
-                          - Comentarios
                           - Media de tiempo (lento, medio, rápido)
                           - Alergénos
                           - Duración estimada de cocción
@@ -195,27 +192,6 @@ class DetailFood extends StatelessWidget {
                         size: Dimensions.font26,
                         text: productItem.title,
                         color: Colors.black87),
-                    SizedBox(
-                      height: Dimensions.padding10,
-                    ),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(productItem.title.startsWith("Tortilla") ? 5 : productItem.title.startsWith("Jamón") ? 5 : productItem.title.startsWith("Salmorejo") ? 4 : productItem.title.startsWith("Gazpacho") ? 4 : productItem.title.startsWith("Paella") ? 3 : 5,
-                                  (index) => Icon(Icons.star,
-                                  color: AppColors.mainColor, size: 15)),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        TextWidget(text: "", color: Color(0xFFccc7c5)),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        TextWidget(
-                            text: productItem.title.startsWith("Tortilla") ? "100 comments" : productItem.title.startsWith("Jamón") ? "200 comments" : productItem.title.startsWith("Salmorejo") ? "300 comments" : productItem.title.startsWith("Gazpacho") ? "400 comments" : productItem.title.startsWith("Paella") ? "500 comments" : "1287 comments", color: Color(0xFFccc7c5))
-                      ],
-                    ),
                     SizedBox(
                       height: Dimensions.padding20,
                     ),

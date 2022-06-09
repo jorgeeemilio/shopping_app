@@ -1,7 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app/screens/search/widget/item_view.dart';
 
 import '../../components/colors.dart';
 import '../../components/expanded_widget.dart';
@@ -17,7 +16,6 @@ import '../../uitls/app_dimensions.dart';
 import '../../uitls/styles.dart';
 import '../../widgets/big_text.dart';
 import '../../widgets/icon_text_widget.dart';
-import '../../widgets/text_widget.dart';
 class SearchResultWidget extends StatefulWidget {
   final String searchText;
   SearchResultWidget({required this.searchText});
@@ -27,7 +25,7 @@ class SearchResultWidget extends StatefulWidget {
 }
 
 class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProviderStateMixin {
-  late TabController _tabController;
+  //late TabController _tabController;
 
   @override
   void initState() {
@@ -251,27 +249,6 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                                   size: Dimensions.font26,
                                                   text: product.title,
                                                   color: Colors.black87),
-                                              SizedBox(
-                                                height: Dimensions.padding10,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Wrap(
-                                                    children: List.generate(product.title.startsWith("Tortilla") ? 5 : product.title.startsWith("Jamón") ? 5 : product.title.startsWith("Salmorejo") ? 4 : product.title.startsWith("Gazpacho") ? 4 : product.title.startsWith("Paella") ? 3 : 0,
-                                                            (index) => Icon(Icons.star,
-                                                            color: AppColors.mainColor, size: 15)),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  TextWidget(text: "", color: Color(0xFFccc7c5)),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  TextWidget(
-                                                      text: product.title.startsWith("Tortilla") ? "100 comments" : product.title.startsWith("Jamón") ? "200 comments" : product.title.startsWith("Salmorejo") ? "300 comments" : product.title.startsWith("Gazpacho") ? "400 comments" : product.title.startsWith("Paella") ? "500 comments" : "", color: Color(0xFFccc7c5))
-                                                ],
-                                              ),
                                               SizedBox(
                                                 height: Dimensions.padding20,
                                               ),

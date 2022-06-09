@@ -13,7 +13,6 @@ import 'package:shopping_app/uitls/app_constants.dart';
 import 'package:shopping_app/uitls/app_dimensions.dart';
 import 'package:shopping_app/widgets/big_text.dart';
 import 'package:shopping_app/widgets/icon_text_widget.dart';
-import 'package:shopping_app/widgets/text_widget.dart';
 class MainFoodPage extends StatefulWidget {
 
   @override
@@ -170,8 +169,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     /*
                     Contenedor formado por:
                           - Nombre del plato
-                          - Valoraciones de los cliente con estrellas
-                          - Comentarios
                           - Media de tiempo (lento, medio, rápido)
                           - Alergénos
                           - Duración estimada de cocción
@@ -187,22 +184,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
                           // Título
 
                           BigText(text: product.title, color: AppColors.titleColor),
-                          SizedBox(height: Dimensions.padding10,),
-
-                          // Valoraciones (estrellas) y comentarios
-
-                          Row(
-                            children: [
-                              Wrap(
-                                children: List.generate(product.title.startsWith("Tortilla") ? 5 : product.title.startsWith("Jamón") ? 5 : product.title.startsWith("Salmorejo") ? 4 : product.title.startsWith("Gazpacho") ? 4 : product.title.startsWith("Paella") ? 3 : 5,
-                                        (index) => Icon(Icons.star, color:AppColors.mainColor, size:15)),
-                              ),
-                              SizedBox(width: 10,),
-                              TextWidget(text: product.title.startsWith("Tortilla") ? "5" : product.title.startsWith("Jamón") ? "5" : product.title.startsWith("Salmorejo") ? "4" : product.title.startsWith("Gazpacho") ? "4" : product.title.startsWith("Paella") ? "3" : "4.5", color: Color(0xFFccc7c5)),
-                              SizedBox(width: 10,),
-                              TextWidget(text: product.title.startsWith("Tortilla") ? "100 comments" : product.title.startsWith("Jamón") ? "200 comments" : product.title.startsWith("Salmorejo") ? "300 comments" : product.title.startsWith("Gazpacho") ? "400 comments" : product.title.startsWith("Paella") ? "500 comments" : "1287 comments", color: Color(0xFFccc7c5))
-                            ],
-                          ),
                           SizedBox(height: Dimensions.padding20,),
 
                           /*
