@@ -37,7 +37,7 @@ class CartController extends GetxController {
            /*
            made code simpler.
             */
-           ()=>items[i]!
+           ()=>items[i]
             /* () => CartItem(
            id: storageItems[i].id,
            title: storageItems[i].title,
