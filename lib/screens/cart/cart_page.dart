@@ -82,27 +82,12 @@ class CartPage extends StatelessWidget {
                   SizedBox(width: 100,),
 
                   Container(
-                    padding: const EdgeInsets.only(left: 0),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.mainColor,
-                    ),
 
                     // Usamos un cartController
 
                     child: GetBuilder<CartController>(builder:(_){
                       return Stack(
                         children: [
-                          Positioned(
-                            child: Center(
-                                child: Icon(
-                                  Icons.shopping_cart_outlined,
-                                  size: 16,
-                                  color: Colors.white,
-                                )),
-                          ),
                           Get.find<CartController>().totalItems>=1?Positioned(
                             right: 3,
                             top:1,

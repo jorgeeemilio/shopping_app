@@ -109,7 +109,7 @@ class _HomePageBodyState extends State<HomePageBody> {
 
                             // Icono de lupa para buscar platos
 
-                            child: Icon(Icons.shopping_cart, color:Colors.white),
+                            child: Icon(Icons.shopping_cart_outlined, color:Colors.white),
                             //onTap: () => Get.toNamed(RouteHelper.getSearchRoute()),
                           ),
                         ),

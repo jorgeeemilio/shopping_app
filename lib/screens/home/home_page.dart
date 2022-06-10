@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
 
           // Historial del carrito
 
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),
+          BottomNavigationBarItem(icon: Icon(Icons.hourglass_full),
               label: "home"
           ),
 
