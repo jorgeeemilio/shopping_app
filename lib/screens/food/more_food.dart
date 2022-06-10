@@ -206,75 +206,6 @@ class MoreFood extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-              // Icono - reduce la cantidad al ser pulsado
-
-              GestureDetector(
-                onTap: () {
-                  Get.find<ProductController>().setQuantity(false, productItem);
-                },
-                child: Container(
-                  width: 40,
-                  height: 40,
-
-                  child: Center(
-                    child: Icon(Icons.remove, color: Colors.white),
-                  ),
-                  decoration: BoxDecoration(
-
-                      boxShadow: [
-                        BoxShadow(
-                            offset: Offset(0, 5),
-                            blurRadius: 5,
-                            color: Colors.grey.withOpacity(0.1))
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.mainColor),
-                ),
-              ),
-              SizedBox(width: 40),
-
-              // Precio y cantidad de unidades del plato
-
-              GetBuilder<ProductController>(builder: (_) {
-                return BigText(
-                  text: (productItem.price.round()).toString()+"\€" +
-                      " X " +
-                      Get.find<ProductController>().certainItems.toString(),
-                  color: AppColors.mainBlackColor,
-                  size: 26,
-                );
-              }),
-              SizedBox(width: 40),
-
-              // Icono + aumenta la cantidad al ser pulsado
-
-              GestureDetector(
-                onTap: () {
-                  Get.find<ProductController>().setQuantity(true, productItem);
-                },
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  child: Center(
-                    child: Icon(Icons.add, color: Colors.white),
-                  ),
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            offset: Offset(0, 5),
-                            blurRadius: 5,
-                            color: Colors.grey.withOpacity(0.1))
-                      ],
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.mainColor),
-                ),
-              ),
-            ],
-          ),
           SizedBox(
             height: 10,
           ),
@@ -290,6 +221,50 @@ class MoreFood extends StatelessWidget {
                 right: Dimensions.padding20),
             child: Row(
               children: [
+
+                Container(
+                  padding:  EdgeInsets.all(Dimensions.padding20),
+                  child: Row(
+                    children: [
+
+                      // Icono - reduce la cantidad al ser pulsado
+
+                      GestureDetector(
+                        onTap: (){
+                          Get.find<ProductController>().setQuantity(false, productItem);
+                        },
+                        child: Icon(Icons.remove, color: AppColors.signColor),
+                      ),
+                      SizedBox(width: Dimensions.padding10),
+
+                      // Cantidad de unidades del plato
+
+                      GetBuilder<ProductController>(builder: (_){
+                        return BigText(text: Get.find<ProductController>().certainItems.toString(), color: AppColors.mainBlackColor);
+                      },),
+                      SizedBox(width: Dimensions.padding10),
+
+                      // Icono + aumenta la cantidad al ser pulsado
+
+                      GestureDetector(
+                        onTap: (){
+                          Get.find<ProductController>().setQuantity(true, productItem);
+                        },
+                        child: Icon(Icons.add, color: AppColors.signColor),
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(Dimensions.padding20),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: Offset(0, 0),
+                            blurRadius: 10,
+                            //spreadRadius: 3,
+                            color: AppColors.titleColor.withOpacity(0.05))
+                      ]),
+                ),
 
                 // Icono Me Gusta (función no implementada)
 
