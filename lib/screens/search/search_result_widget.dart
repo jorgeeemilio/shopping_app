@@ -275,7 +275,7 @@ class _SearchResultWidgetState extends State<SearchResultWidget> with TickerProv
                                                   text: "Introducción",
                                                   color: AppColors.titleColor),
                                               SizedBox(
-                                                height: Dimensions.padding20,
+                                                height: Dimensions.padding10,
                                               ),
                                               Expanded(
                                                 child: SingleChildScrollView(

@@ -222,7 +222,7 @@ class DetailFood extends StatelessWidget {
                         text: "Introducción",
                         color: AppColors.titleColor),
                     SizedBox(
-                      height: Dimensions.padding20,
+                      height: Dimensions.padding10,
                     ),
                     Expanded(
                       child: SingleChildScrollView(
