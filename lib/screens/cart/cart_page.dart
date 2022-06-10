@@ -10,7 +10,6 @@ import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/controllers/auth_controller.dart';
 import 'package:shopping_app/controllers/cart_controller.dart';
 import 'package:shopping_app/controllers/location_controller.dart';
-import 'package:shopping_app/controllers/popular_product.dart';
 import 'package:shopping_app/controllers/product_controller.dart';
 import 'package:shopping_app/controllers/user_controller.dart';
 import 'package:shopping_app/data/repos/order_controller.dart';
@@ -57,42 +56,6 @@ class CartPage extends StatelessWidget {
                   // Icono volver atrás, no está implementada la función
 
                   Container(
-                    padding: const EdgeInsets.only(left: 6),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.mainColor,
-                    ),
-
-                    // Icono de casa, si se pulsa se redirige a la pantalla principal
-
-                    child: GestureDetector(
-                      onTap: (){
-                        if(page=="recommended"){
-                          Get.toNamed(RouteHelper.getRecommendedFoodRoute(pageId, page));
-                        }else if(page=='popular'){
-                          Get.toNamed(RouteHelper.getPopularFoodRoute(pageId, page, RouteHelper.cartPage));
-                        }else if(page=='cart-history'){
-                          //showCustomSnackBar("La reseña del producto no está disponible desde historial de compra", isError: false,title: "Pedir más");
-                          Get.back();
-                        }else{
-                          Get.offNamed(RouteHelper.getInitialRoute());
-                        }
-                      },
-
-                      // Icono de carrito, si se pulsa se redirige a la pantalla de historial de compra (regular porque no sale el navigation menu)
-
-                      child: Center(
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            size: 16,
-                            color: Colors.white,
-                          )),
-                    ),
-                  ),
-                  SizedBox(width: 100,),
-                  Container(
                     //padding: const EdgeInsets.only(left: 6),
                     width: 40,
                     height: 40,
@@ -104,7 +67,7 @@ class CartPage extends StatelessWidget {
                       onTap: (){
                         print("my page id is "+pageId.toString());
 
-                          Get.offNamed(RouteHelper.getInitialRoute());
+                        Get.offNamed(RouteHelper.getInitialRoute());
 
                       },
                       child: Center(
@@ -115,6 +78,8 @@ class CartPage extends StatelessWidget {
                           )),
                     ),
                   ),
+
+                  SizedBox(width: 100,),
 
                   Container(
                     padding: const EdgeInsets.only(left: 0),
@@ -209,44 +174,9 @@ class CartPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
 
-                                  /*
-                                      Si se pulsan las fotos pueden ocurrir dos situaciones:
-                                            - Si el producto ha sido añadido hace poco:
-                                                  - Se abre la pantalla del producto, ya sea PopularFood o RecommendedFood
-                                            - Si el producto lleva bastante tiempo en el carrito (cargado por sharedPreferences):
-                                                  - Nos sale un aviso de que no se puede cargar el producto
-                                       */
-
-                                  GestureDetector(
-                                    onTap: (){
-                                      var getPageIndex=Get.find<ProductController>().popularProductList.indexOf(_cartList[index].product);
-
-                                      // page = "recommended";
-                                      if(getPageIndex<0){
-                                        getPageIndex=Get.find<PopularProduct>().popularProductList.indexOf(_cartList[index].product);
-                                        // page="popular";
-                                      }
-                                      if(getPageIndex<0){
-                                        showCustomSnackBar("La reseña del producto no está disponible desde historial de compra", isError: false,title: "Pedir más");
-                                        //Get.back();
-
-                                      }else{
-                                        if(page=="recommended"){
-                                          Get.toNamed(RouteHelper.getRecommendedFoodRoute(getPageIndex, page));
-                                        }else if(page=="popular"){
-                                          Get.toNamed(RouteHelper.getPopularFoodRoute(getPageIndex, page, RouteHelper.cartPage));
-                                        }else if(page=='cart-history'){
-                                          showCustomSnackBar("La reseña del producto no está disponible desde historial de compra", isError: false,title: "Pedir más");
-                                          //Get.back();
-                                        }else{
-                                          Get.toNamed(RouteHelper.getInitialRoute());
-                                        }
-                                      }
-                                    },
-
                                     // Contenedor en el cual se encuentran las imágenes de los productos
 
-                                    child: Container(
+                                    Container(
                                       width: 100,
                                       height: 100,
                                       decoration: BoxDecoration(
@@ -260,7 +190,6 @@ class CartPage extends StatelessWidget {
                                           color: Colors.white
                                       ),
                                     ),
-                                  ),
                                   SizedBox(width: Dimensions.padding10,),
 
                                   // Título, categoría, precio y cantidad
