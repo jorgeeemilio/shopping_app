@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shopping_app/base/custom_button.dart';
 import 'package:shopping_app/base/custom_snackbar.dart';
-import 'package:shopping_app/components/colors.dart';
 import 'package:shopping_app/controllers/location_controller.dart';
 import 'package:shopping_app/models/address_model.dart';
 import 'package:shopping_app/routes/route_helper.dart';
@@ -39,7 +38,7 @@ class _PickMapScreenState extends State<PickMapScreen> {
       Get.find<LocationController>().setPickData();
     }
     if(Get.find<LocationController>().addressList.isEmpty){
-      _initialPosition =  LatLng(45.521563, -122.677433);
+      _initialPosition =  LatLng(37.372103, -6.155464);
     }else{
       if(Get.find<LocationController>().getUserAddress().address.isNotEmpty){
         print("My address is "+Get.find<LocationController>().getUserAddress().address);

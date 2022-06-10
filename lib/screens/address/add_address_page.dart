@@ -29,7 +29,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
 
   late bool _isLoggedIn;
     CameraPosition _cameraPosition=CameraPosition(target:
-    LatLng(45.521563, -122.677433),zoom: 17);
+    LatLng(37.372103,  -6.155464),zoom: 17);
    late LatLng _initialPosition;
 
   @override
@@ -41,7 +41,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
       Get.find<UserController>().getUserInfo();
     }
    if(Get.find<LocationController>().addressList.isEmpty){
-     _initialPosition =  LatLng(45.521563, -122.677433);
+     _initialPosition =  LatLng(37.372103, -6.155464);
    }else{
      if(Get.find<LocationController>().getUserAddress().address.isNotEmpty){
        print("My address is "+Get.find<LocationController>().getUserAddress().address);
