@@ -378,7 +378,7 @@ class CartPage extends StatelessWidget {
 
                   // Si se detecta que no hay NINGÚN producto, sale un aviso
 
-                )):NoDataScreen(text: "Your cart is empty!");
+                )):NoDataScreen(text: "Tu carrito está vacío");
           })
         ],
       ),
@@ -439,7 +439,7 @@ class CartPage extends StatelessWidget {
                  */
 
                   GestureDetector(
-                      onTap: (){
+                      onTap: () async {
                         if(!Get.find<AuthController>().isLoggedIn()){
                           Get.toNamed(RouteHelper.getSignInRoute());
                         }else{
@@ -463,7 +463,7 @@ class CartPage extends StatelessWidget {
                                   Get.find<UserController>().userInfoModel!.phone,
                               scheduleAt: '', distance: 10,
                             ), _callback);
-
+                            await Future.delayed(Duration(seconds: 5));
                             Get.find<CartController>().clear();
                             Get.find<CartController>().removeCartSharedPreference();
                             Get.find<CartController>().addToHistory();
