@@ -20,8 +20,8 @@ class CartRepo{
   List<String> cart=[];
   List<String> cartHistory = [];
   List<CartItem> getCartList() {
-    sharedPreferences.remove("Cart-list");
-    sharedPreferences.remove("Cart-list-list");
+    //sharedPreferences.remove("Cart-list");
+    //sharedPreferences.remove("Cart-list-list");
     List<String> carts = [];
     if(sharedPreferences.containsKey("Cart-list")) {
       carts = sharedPreferences.getStringList("Cart-list")!;
@@ -69,7 +69,7 @@ class CartRepo{
     // Vacíamos la Lista del carrito.
     // Borramos las sharedPreferences
     cart=[];
-    sharedPreferences.remove("Cart-list");
+    //sharedPreferences.remove("Cart-list");
 
   }
 
@@ -98,10 +98,10 @@ class CartRepo{
   // Se vacía la lista tipo String cart y se borra el carrito de las sharedPreferences.
 
   void removeCartSharedPreference(){
-    sharedPreferences.remove("Cart-list");
+    //sharedPreferences.remove("Cart-list");
     /*
     bug fix
      */
-    sharedPreferences.remove("Cart-list-list");
+    //sharedPreferences.remove("Cart-list-list");
   }
 }
