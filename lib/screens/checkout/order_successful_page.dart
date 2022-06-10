@@ -31,7 +31,7 @@ class OrderSuccessfulScreen extends StatelessWidget {
         SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
 
         Text(
-          status == 1 ? 'You placed the order successfully' : 'Your order failed',
+          status == 1 ? 'Has realizado el pedido con éxito' : 'Ha ocurrido un fallo en el pedido',
           style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge),
         ),
         SizedBox(height: Dimensions.PADDING_SIZE_SMALL),
@@ -40,7 +40,7 @@ class OrderSuccessfulScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE,
               vertical: Dimensions.PADDING_SIZE_SMALL),
           child: Text(
-            status == 1 ? 'Successful order' : 'Failed order',
+            status == 1 ? 'Éxito en el pedido' : 'Error en el pedido',
             style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall,
                 color: Theme.of(context).disabledColor),
             textAlign: TextAlign.center,
@@ -50,7 +50,7 @@ class OrderSuccessfulScreen extends StatelessWidget {
 
         Padding(
           padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
-          child: CustomButton(buttonText: 'Back to Home'.tr, onPressed:
+          child: CustomButton(buttonText: 'Volver a Inicio', onPressed:
               () => Get.offAllNamed(RouteHelper.getInitialRoute())),
         ),
       ]))),
