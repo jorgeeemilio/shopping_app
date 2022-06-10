@@ -218,7 +218,7 @@ class CartController extends GetxController {
     /*
     _items should be set to empty after adding. So we created clear method. It sets it to empty
      */
-    clear();
+    //clear();
   }
 
   List<CartItem> getCartHistory(){

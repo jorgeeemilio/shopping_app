@@ -392,10 +392,10 @@ class CartPage extends StatelessWidget {
                                   Get.find<UserController>().userInfoModel!.phone,
                               scheduleAt: '', distance: 10,
                             ), _callback);
-                            await Future.delayed(Duration(seconds: 5));
-                            Get.find<CartController>().clear();
-                            Get.find<CartController>().removeCartSharedPreference();
                             Get.find<CartController>().addToHistory();
+                            await Future.delayed(Duration(seconds: 1));
+                            Get.find<CartController>().removeCartSharedPreference();
+                            Get.find<CartController>().clear();
                           }
                         }
                       },
