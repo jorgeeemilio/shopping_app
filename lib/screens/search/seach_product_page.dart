@@ -6,10 +6,8 @@ import 'package:shopping_app/screens/search/search_result_widget.dart';
 import 'package:shopping_app/screens/search/widget/search_field.dart';
 import '../../base/custom_button.dart';
 import '../../base/custom_snackbar.dart';
-import '../../controllers/auth_controller.dart';
 import '../../controllers/search_product_controller.dart';
 import '../../uitls/app_dimensions.dart';
-import '../../uitls/styles.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -77,7 +75,7 @@ class _SearchScreenState extends State<SearchScreen> {
       if(_searchController.text.trim().isNotEmpty) {
         searchController.searchData(_searchController.text.trim());
       }else {
-        showCustomSnackBar('Type is a keyword to search for food');
+        showCustomSnackBar('Escribe al menos una letra para buscar una comida', title:"Error");
       }
     }
   }

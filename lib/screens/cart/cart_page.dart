@@ -24,118 +24,133 @@ import 'package:shopping_app/widgets/text_widget.dart';
 class CartPage extends StatelessWidget {
   final int pageId;
   String page;
-   CartPage({Key? key, required this.pageId, required this.page}) : super(key: key);
+  CartPage({Key? key, required this.pageId, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //final TextEditingController _noteController = TextEditingController();
-  //  var location = Get.find<LocationController>().getUserAddress();
+    //  var location = Get.find<LocationController>().getUserAddress();
 
     // Devuelve Scaffold (Clase que implementa los materiales básicos de diseño de una estrucutra layout, conocidos como "material design").
 
     return Scaffold(
-    backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
 
-      body:Stack(
-        children: [
+        body:Stack(
+          children: [
 
-          // Se posicionan los tres iconos de la parte superior
+            // Se posicionan los tres iconos de la parte superior
 
-          Positioned(
-              top: 60,
-              left: 20,
-              right: 20,
+            Positioned(
+                top: 60,
+                left: 20,
+                right: 20,
 
-              // Columna que incluye los tres iconos separados por spaceBetween
+                // Columna que incluye los tres iconos separados por spaceBetween
 
-              child:  Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
 
-                  // Icono volver atrás, no está implementada la función
+                    // Icono volver atrás, no está implementada la función
 
-                  Container(
-                    //padding: const EdgeInsets.only(left: 6),
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: AppColors.mainColor,
+                    Container(
+                      //padding: const EdgeInsets.only(left: 6),
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.mainColor,
+                      ),
+                      child: GestureDetector(
+                        onTap: (){
+                          print("my page id is "+pageId.toString());
+
+                          Get.offNamed(RouteHelper.getInitialRoute());
+
+                        },
+                        child: Center(
+                            child: Icon(
+                              Icons.home_outlined,
+                              size: 20,
+                              color: Colors.white,
+                            )),
+                      ),
                     ),
-                    child: GestureDetector(
-                      onTap: (){
-                        print("my page id is "+pageId.toString());
 
-                        Get.offNamed(RouteHelper.getInitialRoute());
+                    SizedBox(width: 100,),
 
-                      },
-                      child: Center(
-                          child: Icon(
-                            Icons.home_outlined,
-                            size: 20,
-                            color: Colors.white,
-                          )),
-                    ),
-                  ),
+                    Container(
+                      padding: const EdgeInsets.only(left: 0),
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.mainColor,
+                      ),
 
-                  SizedBox(width: 100,),
+                      // Usamos un cartController
 
-                  Container(
-
-                    // Usamos un cartController
-
-                    child: GetBuilder<CartController>(builder:(_){
-                      return Stack(
-                        children: [
-                          Get.find<CartController>().totalItems>=1?Positioned(
-                            right: 3,
-                            top:1,
-                            child: Center(
-                                child: Icon(
-                                  Icons.circle,
-                                  size: 20,
-                                  color: Colors.white,
-                                )),
-                          ):Container(),
-                          Get.find<CartController>().totalItems>=1?Positioned(
-                            right: 7,
-                            top:4,
-                            child: Center(
-                                child:  Text(
-                                  Get.find<CartController>().totalItems.toString(),
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.black54
-                                  ),
-                                )
+                      child: GetBuilder<CartController>(builder:(_){
+                        return Stack(
+                          children: [
+                            Positioned(
+                              child: Center(
+                                  child: Icon(
+                                    Icons.shopping_cart_outlined,
+                                    size: 16,
+                                    color: Colors.white,
+                                  )),
                             ),
-                          ):Container()
-                        ],
-                      );
-                    }),
-                  )
-                ],
-              )),
-          GetBuilder<CartController>(builder: (_){
-            return  Get.find<CartController>().getCarts.length>0?Positioned(
-                top: 100,
-                left: 0,
-                right: 0,
-                //with bottom property 0, we can make it scrollable
-                bottom: 0,
-                child: Container(
-                  color: Colors.white,
-                  // height: 600,
-                  //width: 300,
-                  child:  GetBuilder<CartController>(builder: (cartController){
-                    // print("here from cart "+cartController.getCarts[1].quantity.toString());
-                    List<CartItem> _cartList = Get.find<CartController>().getCarts;
-                    return  MediaQuery.removePadding(
-                      context: context,
-                      removeTop: true,
+                            Get.find<CartController>().totalItems>=1?Positioned(
+                              right: 3,
+                              top:1,
+                              child: Center(
+                                  child: Icon(
+                                    Icons.circle,
+                                    size: 20,
+                                    color: Colors.white,
+                                  )),
+                            ):Container(),
+                            Get.find<CartController>().totalItems>=1?Positioned(
+                              right: 7,
+                              top:4,
+                              child: Center(
+                                  child:  Text(
+                                    Get.find<CartController>().totalItems.toString(),
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black54
+                                    ),
+                                  )
+                              ),
+                            ):Container()
+                          ],
+                        );
+                      }),
+                    )
+                  ],
+                )),
+            GetBuilder<CartController>(builder: (_){
+              return  Get.find<CartController>().getCarts.length>0?Positioned(
+                  top: 100,
+                  left: 0,
+                  right: 0,
+                  //with bottom property 0, we can make it scrollable
+                  bottom: 0,
+                  child: Container(
+                    color: Colors.white,
+                    // height: 600,
+                    //width: 300,
+                    child:  GetBuilder<CartController>(builder: (cartController){
+                      // print("here from cart "+cartController.getCarts[1].quantity.toString());
+                      List<CartItem> _cartList = Get.find<CartController>().getCarts;
+                      return  MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
 
-                      /*
+                        /*
                         Listas que componen los productos, formadas por:
                               - Foto del producto
                               - Título
@@ -144,20 +159,20 @@ class CartPage extends StatelessWidget {
                               - Cantidad (se puede modificar con botones de - y +)
                          */
 
-                      child: ListView.builder(
-                          itemCount: _cartList.length,
-                          itemBuilder: (_, index){
-                            return Container(
-                              //color: Colors.red,
-                              width: double.maxFinite,
-                              height: 100,
-                              margin:  EdgeInsets.all(Dimensions.padding10),
-                              child: _cartList[index].quantity>0?
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                //this setting should come at the end to make sense. this is important for the cart + - button
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
+                        child: ListView.builder(
+                            itemCount: _cartList.length,
+                            itemBuilder: (_, index){
+                              return Container(
+                                //color: Colors.red,
+                                width: double.maxFinite,
+                                height: 100,
+                                margin:  EdgeInsets.all(Dimensions.padding10),
+                                child: _cartList[index].quantity>0?
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  //this setting should come at the end to make sense. this is important for the cart + - button
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
 
                                     // Contenedor en el cual se encuentran las imágenes de los productos
 
@@ -175,127 +190,127 @@ class CartPage extends StatelessWidget {
                                           color: Colors.white
                                       ),
                                     ),
-                                  SizedBox(width: Dimensions.padding10,),
+                                    SizedBox(width: Dimensions.padding10,),
 
-                                  // Título, categoría, precio y cantidad
+                                    // Título, categoría, precio y cantidad
 
-                                  Expanded(
-                                    child: Container(
-                                      //since column needs height, without this container height this column would take min
-                                      //size. Previously this column inside the Row, it didn't know the height. Now because of
-                                      //container height, column would occupy the maximun height
-                                      height: 100,
-                                      //width:260,
-                                      child: Column(
-                                        //mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        //spacebetween pushes to the end of the upper boundary
-                                        //spaceAround has the middle upper boundary
-                                        //spaceEvenly has the lowest upper boundary
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
+                                    Expanded(
+                                      child: Container(
+                                        //since column needs height, without this container height this column would take min
+                                        //size. Previously this column inside the Row, it didn't know the height. Now because of
+                                        //container height, column would occupy the maximun height
+                                        height: 100,
+                                        //width:260,
+                                        child: Column(
+                                          //mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          //spacebetween pushes to the end of the upper boundary
+                                          //spaceAround has the middle upper boundary
+                                          //spaceEvenly has the lowest upper boundary
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
 
-                                          // Título
+                                            // Título
 
-                                          Text(
+                                            Text(
 
-                                            cartController.getCarts[index].title,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
+                                              cartController.getCarts[index].title,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
 
-                                              color:Colors.black54,
-                                              fontSize:20,
-                                              fontWeight: FontWeight.w600,
+                                                color:Colors.black54,
+                                                fontSize:20,
+                                                fontWeight: FontWeight.w600,
 
+                                              ),
                                             ),
-                                          ),
-                                          /* BigText(text: cartController.getCarts[index].title,
+                                            /* BigText(text: cartController.getCarts[index].title,
                                                   color: AppColors.titleColor),*/
 
-                                          // Mensaje Que aproveche
+                                            // Mensaje Que aproveche
 
-                                          TextWidget(text:"¡Que aproveche!", color:AppColors.textColor,),
-                                          Row(
-                                            children: [
+                                            TextWidget(text:"¡Que aproveche!", color:AppColors.textColor,),
+                                            Row(
+                                              children: [
 
-                                              // Precio
+                                                // Precio
 
-                                              BigText(text: cartController.getCarts[index].price.toString()+" \€", color: Colors.redAccent),
-                                              SizedBox(width: Dimensions.padding10,),
-                                              Expanded(child: Container()),
-                                              Align(
-                                                alignment: Alignment.bottomRight,
-                                                child: Container(
-                                                  padding:  EdgeInsets.all(Dimensions.padding5),
-                                                  child: Row(
-                                                    children: [
+                                                BigText(text: cartController.getCarts[index].price.toString()+" \€", color: Colors.redAccent),
+                                                SizedBox(width: Dimensions.padding10,),
+                                                Expanded(child: Container()),
+                                                Align(
+                                                  alignment: Alignment.bottomRight,
+                                                  child: Container(
+                                                    padding:  EdgeInsets.all(Dimensions.padding5),
+                                                    child: Row(
+                                                      children: [
 
-                                                      // Al pulsar - se reduce la cantidad en uno
+                                                        // Al pulsar - se reduce la cantidad en uno
 
-                                                      GestureDetector(
-                                                        onTap: (){
+                                                        GestureDetector(
+                                                          onTap: (){
 
-                                                          var quantity = -1;
-                                                          Get.find<CartController>().addItem(_cartList[index].product, quantity);
+                                                            var quantity = -1;
+                                                            Get.find<CartController>().addItem(_cartList[index].product, quantity);
 
-                                                        },
-                                                        child: Icon(Icons.remove, color: AppColors.signColor),
-                                                      ),
-                                                      SizedBox(width: Dimensions.padding5),
+                                                          },
+                                                          child: Icon(Icons.remove, color: AppColors.signColor),
+                                                        ),
+                                                        SizedBox(width: Dimensions.padding5),
 
-                                                      // Cantidad
+                                                        // Cantidad
 
-                                                      GetBuilder<ProductController>(builder: (_){
-                                                        return BigText(text: _cartList[index].quantity.toString(), color: AppColors.mainBlackColor);
-                                                      },),
-                                                      SizedBox(width: Dimensions.padding5),
+                                                        GetBuilder<ProductController>(builder: (_){
+                                                          return BigText(text: _cartList[index].quantity.toString(), color: AppColors.mainBlackColor);
+                                                        },),
+                                                        SizedBox(width: Dimensions.padding5),
 
-                                                      // Al pulsar + se aumenta la cantidad en uno
+                                                        // Al pulsar + se aumenta la cantidad en uno
 
-                                                      GestureDetector(
-                                                        onTap: (){
-                                                          var quantity = 1;
-                                                          Get.find<CartController>().addItem(_cartList[index].product, quantity);
+                                                        GestureDetector(
+                                                          onTap: (){
+                                                            var quantity = 1;
+                                                            Get.find<CartController>().addItem(_cartList[index].product, quantity);
 
-                                                        },
-                                                        child: Icon(Icons.add, color: AppColors.signColor),
-                                                      ),
-                                                    ],
+                                                          },
+                                                          child: Icon(Icons.add, color: AppColors.signColor),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius: BorderRadius.circular(Dimensions.padding20),
+                                                        boxShadow: [
+                                                          BoxShadow(
+                                                              offset: Offset(0, 0),
+                                                              blurRadius: 10,
+                                                              //spreadRadius: 3,
+                                                              color: AppColors.titleColor.withOpacity(0.05))
+                                                        ]),
                                                   ),
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius: BorderRadius.circular(Dimensions.padding20),
-                                                      boxShadow: [
-                                                        BoxShadow(
-                                                            offset: Offset(0, 0),
-                                                            blurRadius: 10,
-                                                            //spreadRadius: 3,
-                                                            color: AppColors.titleColor.withOpacity(0.05))
-                                                      ]),
-                                                ),
-                                              )
-                                            ],
-                                          )
-                                        ],
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  )
+                                    )
 
-                                ],
-                              )
-                                  :Container(),
-                            );
-                          }),
-                    );
-                  }),
+                                  ],
+                                )
+                                    :Container(),
+                              );
+                            }),
+                      );
+                    }),
 
-                  // Si se detecta que no hay NINGÚN producto, sale un aviso
+                    // Si se detecta que no hay NINGÚN producto, sale un aviso
 
-                )):NoDataScreen(text: "Tu carrito está vacío");
-          })
-        ],
-      ),
+                  )):NoDataScreen(text: "Tu carrito está vacío");
+            })
+          ],
+        ),
 
         /*
         Parte de abajo de la pantalla, formada por:
@@ -303,9 +318,9 @@ class CartPage extends StatelessWidget {
               - Botón de Checkout para finalizar la compra
          */
 
-      bottomNavigationBar: GetBuilder<OrderController>(builder: (orderController){
+        bottomNavigationBar: GetBuilder<OrderController>(builder: (orderController){
 
-        /*
+          /*
             Una condición:
                   - Si se detecta que hay algún producto aparece el coste total del pedido y el botón Checkout
                   - Si no se detecta ningún producto aparece un contenedor vacío
@@ -420,7 +435,7 @@ class CartPage extends StatelessWidget {
                   topRight: Radius.circular(Dimensions.padding20),
                 )),
           ):CustomLoader();
-      })
+        })
     );
   }
   void _callback(bool isSuccess, String message, String orderID) async {
