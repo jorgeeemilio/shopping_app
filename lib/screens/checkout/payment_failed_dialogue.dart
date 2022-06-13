@@ -39,7 +39,7 @@ class PaymentFailedDialog extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(Dimensions.PADDING_SIZE_LARGE),
             child: Text(
-              'if_you_do_not_pay',
+              'Si no pagas',
               style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge), textAlign: TextAlign.center,
             ),
           ),
