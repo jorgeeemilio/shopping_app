@@ -31,7 +31,7 @@ class PaymentFailedDialog extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: Dimensions.PADDING_SIZE_LARGE),
             child: Text(
-              'are_you_agree_with_this_order_fail', textAlign: TextAlign.center,
+              'Eres consciente de que el pedido ha fallado', textAlign: TextAlign.center,
               style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraLarge, color: Colors.red),
             ),
           ),
@@ -48,7 +48,7 @@ class PaymentFailedDialog extends StatelessWidget {
           GetBuilder<OrderController>(builder: (orderController) {
             return !orderController.isLoading ? Column(children: [
               CustomButton(
-                buttonText: 'switch_to_cash_on_delivery',
+                buttonText: 'Pagar en efecito al repartidor',
                 //onPressed: () => orderController.switchToCOD(orderID),
                 radius: Dimensions.RADIUS_SMALL, height: 40,
               ),
@@ -61,7 +61,7 @@ class PaymentFailedDialog extends StatelessWidget {
                   backgroundColor: Theme.of(context).disabledColor.withOpacity(0.3), minimumSize: Size(Dimensions.WEB_MAX_WIDTH, 40), padding: EdgeInsets.zero,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimensions.RADIUS_SMALL)),
                 ),
-                child: Text('continue_with_order_fail', textAlign: TextAlign.center, style: robotoBold.copyWith(color: Theme.of(context).textTheme.bodyText1?.color)),
+                child: Text('Continuar con el pedido fallido', textAlign: TextAlign.center, style: robotoBold.copyWith(color: Theme.of(context).textTheme.bodyText1?.color)),
               ),
             ]) : Center(child: CircularProgressIndicator());
           }),
