@@ -83,11 +83,11 @@ class MoreFood extends StatelessWidget {
                 width: double.maxFinite,
                 height: Dimensions.moreViewCon,
               ),
-              //titlePadding: EdgeInsets.all(16),
+              titlePadding: EdgeInsets.all(16),
               title: Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left:20),
+                    //margin: EdgeInsets.only(left:20),
                     width: 30,
                     height: 30,
 
@@ -122,7 +122,7 @@ class MoreFood extends StatelessWidget {
                       Get.toNamed(RouteHelper.getCartPage(pageId, page));
                     },
                     child: Container(
-                      margin: const EdgeInsets.only(right: 20),
+                      //margin: const EdgeInsets.only(right: 20),
                       width: 30,
                       height: 30,
                       decoration: BoxDecoration(
