@@ -393,7 +393,7 @@ class CartPage extends StatelessWidget {
                               scheduleAt: '', distance: 10,
                             ), _callback);
                             Get.find<CartController>().addToHistory();
-                            await Future.delayed(Duration(seconds: 1));
+                            await Future.delayed(Duration(seconds: 3));
                             Get.find<CartController>().removeCartSharedPreference();
                             Get.find<CartController>().clear();
                           }

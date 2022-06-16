@@ -1,6 +1,5 @@
 // Pantalla de Crear una Cuenta
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shopping_app/base/custom_loader.dart';
@@ -26,11 +25,13 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    /*
     List images =[
       "g.png",
       "t.png",
       "f.png"
     ];
+     */
 
     double w = MediaQuery.of(context).size.width*1.25;
     double h = MediaQuery.of(context).size.height*1.25;
@@ -160,7 +161,7 @@ class SignUpPage extends StatelessWidget {
             print("success registration");
             Get.toNamed(RouteHelper.getAddAddressRoute());
         }else {
-          Get.snackbar("Error", "Algo falló");
+          Get.snackbar("Error", "El correo o teléfono ya está en uso");
 
         }
       });

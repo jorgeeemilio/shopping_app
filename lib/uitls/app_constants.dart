@@ -9,8 +9,8 @@ class AppConstants {
   //your base url
   //https://youtu.be/DjXS9W1HD9U here how to set up the admin panel
   //static const String BASE_URL = 'http://mvs.bslmeiyu.com';
-  static const String BASE_URL = 'http://10.0.2.2:8000';
-
+  // static const String BASE_URL = 'http://10.0.2.2:8000';
+  static const String BASE_URL = 'http://192.169.241.30:8000';
   //static const String BASE_URL = 'http://127.0.0.1:8000';
 
   static const String REGISTER_URI = '/api/v1/auth/register';
